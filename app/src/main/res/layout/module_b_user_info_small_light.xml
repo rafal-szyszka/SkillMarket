@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/user_info_img"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:srcCompat="@drawable/ic_mail"/>
+
+    <TextView
+        android:id="@+id/user_info_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sample mail"
+        android:textSize="14sp"
+        android:textColor="@android:color/background_light"
+        android:fontFamily="sans-serif-light"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/user_info_img"
+        android:layout_marginStart="10dp"/>
+
+</RelativeLayout>

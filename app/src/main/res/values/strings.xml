@@ -8,4 +8,5 @@
     <string name="sign_up_password_text">Password</string>
     <string name="sign_up_create_account_text">Create account</string>
     <string name="sign_up_have_account_text"><u>Already have an account? Sign in</u></string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin placerat vestibulum feugiat. Sed eget malesuada libero. Vestibulum quis fermentum libero. Vestibulum lectus orci, egestas a ligula in, faucibus viverra felis. Donec posuere sollicitudin neque, ac blandit diam iaculis ut. Ut finibus ante enim, ultricies pharetra felis sagittis a. Nulla porta quam id ligula porta, vitae fermentum augue pharetra. Vivamus scelerisque ligula et enim suscipit condimentum.</string>
 </resources>
