@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Skill Market</string>
+    <string name="sign_in_login_text">Sign in</string>
+    <string name="sign_in_sign_up_text">Sign up</string>
+    <string name="sign_in_remember_me_text">Remember me.</string>
+    <string name="sign_up_full_name_text">Full name</string>
+    <string name="sign_up_email_text">Email</string>
+    <string name="sign_up_password_text">Password</string>
+    <string name="sign_up_create_account_text">Create account</string>
+    <string name="sign_up_have_account_text"><u>Already have an account? Sign in</u></string>
+</resources>
