@@ -4,6 +4,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,28 +50,13 @@ public class SignInActivity extends AppCompatActivity {
         ArrayList<Offer> offers = new ArrayList<>();
         populateArray(offers);
 
-        ListView list = (ListView) findViewById(R.id.user_profile_offers);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.user_profile_offers);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setNestedScrollingEnabled(false);
 
-        list.setAdapter(new ArrayAdapter<Offer>(SignInActivity.this, 0, offers){
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if(convertView == null) {
-                    convertView = LayoutInflater.from(SignInActivity.this).inflate(R.layout.module_c_offer_item, parent, false);
-                }
-
-                ((TextView)convertView.findViewById(R.id.offer_item_owner)).setText(getItem(position).showOfferOwner());
-                ((TextView)convertView.findViewById(R.id.offer_item_owner_email)).setText(getItem(position).showOfferOwnerEmail());
-                ((TextView)convertView.findViewById(R.id.offer_item_title)).setText(getItem(position).showTitle());
-                ((TextView)convertView.findViewById(R.id.offer_item_category)).setText(getItem(position).showCategory());
-                ((TextView)convertView.findViewById(R.id.offer_item_short_description)).setText(getItem(position).showDescription(false));
-                ((TextView)convertView.findViewById(R.id.offer_item_payment)).setText(getItem(position).showPaymentDetails());
-
-                convertView.setPadding(20,20,20,20);
-
-                return convertView;
-            }
-        });
-
+        recyclerView.setAdapter(new MyAdapter(offers, recyclerView));
 
     }
 
@@ -83,6 +71,58 @@ public class SignInActivity extends AppCompatActivity {
             offer.setCategory(categories[i]);
             offer.attachPaymentDetails(payments[i]);
             offers.add(offer);
+        }
+    }
+
+    private class MyAdapter extends RecyclerView.Adapter {
+
+        private ArrayList<Offer> offers;
+        private RecyclerView recyclerView;
+
+        private class OfferViewHolder extends RecyclerView.ViewHolder {
+            public TextView owner, ownerEmail, title, description, paymentDetails;
+
+            public OfferViewHolder(View parent) {
+                super(parent);
+                owner = parent.findViewById(R.id.offer_item_owner);
+                ownerEmail  =parent.findViewById(R.id.offer_item_owner_email);
+                title = parent.findViewById(R.id.offer_item_title);
+                description = parent.findViewById(R.id.offer_item_short_description);
+                paymentDetails = parent.findViewById(R.id.offer_item_payment);
+            }
+
+        }
+
+        public MyAdapter(ArrayList<Offer> offers, RecyclerView recyclerView) {
+            this.offers = offers;
+            this.recyclerView = recyclerView;
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.module_c_offer_item, parent, false);
+
+            return new OfferViewHolder(view);
+
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            OfferViewHolder myHolder = (OfferViewHolder) holder;
+            Offer offer = offers.get(position);
+
+            myHolder.owner.setText("Rafał Szyszka");
+            myHolder.ownerEmail.setText("rafal@szyszka.it");
+            myHolder.title.setText(offer.showTitle());
+            myHolder.description.setText(offer.showDescription(false));
+            myHolder.paymentDetails.setText(offer.showPaymentDetails());
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return offers.size();
         }
     }
 }
