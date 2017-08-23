@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Zarządzaj kontem">
+        <menu>
+            <item
+                android:id="@+id/nav_change_password"
+                android:icon="@drawable/ic_key"
+                android:title="Change password" />
+
+            <item
+                android:id="@+id/nav_change_email"
+                android:icon="@drawable/ic_mail_dark"
+                android:title="Change email address" />
+
+            <item
+                android:id="@+id/nav_change_address"
+                android:icon="@drawable/ic_home"
+                android:title="Change address" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_maintain_announcements"
+        android:title="Zarządzaj ogłoszeniami" />
+
+    <item android:title="Przeglądaj">
+        <menu>
+            <item
+                android:id="@+id/nav_explore_announcements"
+                android:icon="@drawable/ic_offer"
+                android:title="Przeglądaj ogłoszenia"/>
+
+            <item
+                android:id="@+id/nav_explore_people"
+                android:icon="@drawable/ic_invite"
+                android:title="Szukaj znajomych"/>
+        </menu>
+    </item>
+
+    <item android:title="Zarządzaj osobami">
+        <menu>
+            <item
+                android:id="@+id/nav_maintain_friends"
+                android:icon="@drawable/ic_people"
+                android:title="Twoi znajomi"/>
+
+            <item
+                android:id="@+id/nav_maintain_trusted"
+                android:icon="@drawable/ic_empty_people"
+                android:title="Zaufani giełdziarze"/>
+        </menu>
+    </item>
+
+</menu>

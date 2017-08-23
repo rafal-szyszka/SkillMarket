@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bordered_bottom_left_right_light">
+
+    <TextView
+        android:id="@+id/utils_form_row_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="7dp"
+        android:text="Pseudonim:"
+        android:textSize="12sp"
+        android:textColor="@android:color/background_dark"
+        android:textAllCaps="true"/>
+
+    <TextView
+        android:id="@+id/utils_form_row_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="7dp"
+        android:text="SQUIER"
+        android:textAlignment="textEnd"
+        android:textSize="12sp"
+        android:textColor="@android:color/background_dark" />
+
+</LinearLayout>

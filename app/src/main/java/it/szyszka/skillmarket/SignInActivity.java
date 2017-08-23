@@ -33,30 +33,60 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.module_b_user_profile);
+        setContentView(R.layout.module_b_main_user_profile);
 
-        View view = findViewById(R.id.user_profile_email);
-        ImageView img = view.findViewById(R.id.user_info_img);
-        TextView txt = view.findViewById(R.id.user_info_text);
+        /*View row = findViewById(R.id.info_form_first_row);
 
-        txt.setText("rafal@szyszka.it");
+        TextView txt = (TextView) row.findViewById(R.id.utils_form_row_title);
+        txt.setText("Pseudonim");
+        txt = (TextView) row.findViewById(R.id.utils_form_row_value);
+        txt.setText("SQUIER");
 
-        view = findViewById(R.id.user_profile_location);
-        img = view.findViewById(R.id.user_info_img);
-        img.setImageResource(R.drawable.ic_location);
-        txt = view.findViewById(R.id.user_info_text);
-        txt.setText("Wrocław");
+        row = findViewById(R.id.info_form_second_row);
+        txt = row.findViewById(R.id.utils_form_row_title);
+        txt.setText("Adres");
+        txt = row.findViewById(R.id.utils_form_row_value);
+        txt.setText("Wrocław, Sudecka 147/7");
 
-        ArrayList<Offer> offers = new ArrayList<>();
-        populateArray(offers);
+        row = findViewById(R.id.info_form_third_row);
+        txt = row.findViewById(R.id.utils_form_row_title);
+        txt.setText("Numer telefonu");
+        txt = row.findViewById(R.id.utils_form_row_value);
+        txt.setText("535-981-325");
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.user_profile_offers);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setNestedScrollingEnabled(false);
+        row = findViewById(R.id.info_form_fourth_row);
+        txt = row.findViewById(R.id.utils_form_row_title);
+        txt.setText("Adres e-mail");
+        txt = row.findViewById(R.id.utils_form_row_value);
+        txt.setText("rafal@szyszka.it");*/
 
-        recyclerView.setAdapter(new MyAdapter(offers, recyclerView));
+//        ImageView img = view.findViewById(R.id.user_info_img);
+//        TextView txt = view.findViewById(R.id.user_info_text);
+//
+//        txt.setText("rafal@szyszka.it");
+//
+//        view = findViewById(R.id.user_profile_location);
+//        img = view.findViewById(R.id.user_info_img);
+//        img.setImageResource(R.drawable.ic_location);
+//        txt = view.findViewById(R.id.user_info_text);
+//        txt.setText("Wrocław");
+//
+//        view = findViewById(R.id.user_profile_phone);
+//        img = view.findViewById(R.id.user_info_img);
+//        img.setImageResource(R.drawable.ic_phone);
+//        txt = view.findViewById(R.id.user_info_text);
+//        txt.setText("535-981-325");
+//
+//        ArrayList<Offer> offers = new ArrayList<>();
+//        populateArray(offers);
+//
+//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.user_profile_offers);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        recyclerView.setNestedScrollingEnabled(false);
+//
+//        recyclerView.setAdapter(new MyAdapter(offers, recyclerView));
 
     }
 
