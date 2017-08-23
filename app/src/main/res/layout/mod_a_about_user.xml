@@ -25,6 +25,6 @@
 
     <include
         android:id="@+id/about_user_basic_info"
-        layout="@layout/module_b_about_user_info_form"/>
+        layout="@layout/mod_a_about_user_info_form"/>
 
 </LinearLayout>

@@ -48,7 +48,7 @@
 
                     <include
                         android:id="@+id/user_profile_rating"
-                        layout="@layout/module_b_user_rating"
+                        layout="@layout/mod_a_user_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -61,7 +61,7 @@
 
                         <include
                             android:id="@+id/user_profile_email"
-                            layout="@layout/module_b_user_info_small"
+                            layout="@layout/mod_a_user_info_small"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -69,7 +69,7 @@
 
                         <include
                             android:id="@+id/user_profile_phone"
-                            layout="@layout/module_b_user_info_small"
+                            layout="@layout/mod_a_user_info_small"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -80,7 +80,7 @@
 
                     <include
                         android:id="@+id/user_profile_location"
-                        layout="@layout/module_b_user_info_small"
+                        layout="@layout/mod_a_user_info_small"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp" />

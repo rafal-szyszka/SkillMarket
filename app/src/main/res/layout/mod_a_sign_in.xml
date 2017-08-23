@@ -8,7 +8,7 @@
     tools:context="it.szyszka.skillmarket.SignInActivity">
 
     <include
-        layout="@layout/module_a_toolbar"
+        layout="@layout/mod_a_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
