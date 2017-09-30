@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="it.szyszka.skillmarket.SignInActivity">
+    tools:context="it.szyszka.skillmarket.modules.user.activities.SignInActivity_">
 
     <include
         layout="@layout/mod_a_toolbar"
@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/sign_in_app_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_below="@+id/module_a_toolbar"
         android:layout_centerHorizontal="true"
         app:srcCompat="@mipmap/app_logo" />

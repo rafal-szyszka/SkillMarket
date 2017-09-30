@@ -3,6 +3,7 @@
     <string name="sign_in_login_text">Sign in</string>
     <string name="sign_in_sign_up_text">Sign up</string>
     <string name="sign_in_remember_me_text">Remember me.</string>
+    <string name="sign_up_nickname_text">Nickname</string>
     <string name="sign_up_full_name_text">Full name</string>
     <string name="sign_up_email_text">Email</string>
     <string name="sign_up_password_text">Password</string>
@@ -15,7 +16,11 @@
     <string name="sign_up_city">City</string>
     <string name="sign_up_address">Address</string>
     <string name="title_activity_user_profile">UserProfile</string>
-
+    <string name="sign_up_no_white_spaces">Don\'t use spaces</string>
+    <string name="sign_up_wrong_full_name">Add your last name</string>
+    <string name="sign_up_wrong_email">Email is not valid</string>
+    <string name="sign_up_wrong_password">Min 8 characters</string>
+    <string name="sign_up_not_empty">This field is required</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

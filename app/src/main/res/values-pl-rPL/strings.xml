@@ -4,6 +4,7 @@
     <string name="sign_in_login_text">Zaloguj się</string>
     <string name="sign_in_sign_up_text">Zarejestruj się</string>
     <string name="sign_in_remember_me_text">Zapamiętaj mnie.</string>
+    <string name="sign_up_nickname_text">Pseudonim</string>
     <string name="sign_up_full_name_text">Imię i nazwisko</string>
     <string name="sign_up_email_text">Adres e-mail</string>
     <string name="sign_up_password_text">Hasło</string>
@@ -12,4 +13,9 @@
     <string name="sign_up_phone_number">Numer telefonu</string>
     <string name="sign_up_city">Miejscowość</string>
     <string name="sign_up_address">Nazwa i numer ulicy</string>
+    <string name="sign_up_no_white_spaces">Nie używaj spacji</string>
+    <string name="sign_up_wrong_full_name">Podaj Imię z nazwiskiem</string>
+    <string name="sign_up_wrong_email">Email nie jest poprawny</string>
+    <string name="sign_up_wrong_password">Min. 8 znaków</string>
+    <string name="sign_up_not_empty">Te pole jest wymagane</string>
 </resources>
