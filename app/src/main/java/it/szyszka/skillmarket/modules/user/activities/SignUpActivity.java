@@ -1,5 +1,6 @@
 package it.szyszka.skillmarket.modules.user.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -15,12 +16,13 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.ColorRes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import it.szyszka.skillmarket.R;
-import it.szyszka.skillmarket.utils.InputValidator;
-import it.szyszka.skillmarket.utils.Rule;
+import it.szyszka.skillmarket.modules.user.model.User;
+import it.szyszka.skillmarket.utils.forms.InputValidator;
+import it.szyszka.skillmarket.utils.forms.Rule;
+import it.szyszka.skillmarket.utils.view.LabeledEditText;
 
 /**
  * Created by rafal on 30.09.17.
@@ -29,6 +31,13 @@ import it.szyszka.skillmarket.utils.Rule;
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = SignUpActivity_.class.getSimpleName();
+
+    public static class Form {
+        public static String NICKNAME = "nickname";
+        public static String FULL_NAME = "fullname";
+        public static String EMAIL = "email";
+        public static String PASSWORD = "password";
+    }
 
     @ViewById(R.id.module_a_toolbar)
     Toolbar toolbar;
@@ -57,7 +66,20 @@ public class SignUpActivity extends AppCompatActivity {
     void createAccount() {
         InputValidator validator = new InputValidator(getInputs(), this);
         Boolean formIsValid = validator.validate(errorRed);
-        if(formIsValid) SignUpDetailsActivity_.intent(this).start();
+        if(formIsValid) launchDetailsActivity();
+    }
+
+    private void launchDetailsActivity(){
+        startActivity(new Intent(this, SignUpDetailsActivity_.class)
+                .putExtra(Form.NICKNAME, getTextValueFromEditText((EditText) nickname.findViewById(R.id.labeled_input_edit)))
+                .putExtra(Form.FULL_NAME, getTextValueFromEditText((EditText) fullName.findViewById(R.id.labeled_input_edit)))
+                .putExtra(Form.EMAIL, getTextValueFromEditText((EditText) email.findViewById(R.id.labeled_input_edit)))
+                .putExtra(Form.PASSWORD, getTextValueFromEditText((EditText) password.findViewById(R.id.labeled_input_edit)))
+        );
+    }
+
+    private String getTextValueFromEditText(EditText editText) {
+        return editText.getText().toString();
     }
 
     private List<Pair<Rule, View>> getInputs() {
@@ -85,16 +107,17 @@ public class SignUpActivity extends AppCompatActivity {
     void initView() {
         toolbar.setTitle(R.string.app_name);
 
-        TextView label = nickname.findViewById(R.id.labeled_input_label);
-        label.setText(R.string.sign_up_nickname_text);
+        LabeledEditText input = new LabeledEditText();
+        input.setNewInput(nickname)
+                .getLabel().setText(R.string.sign_up_nickname_text);
 
-        label = fullName.findViewById(R.id.labeled_input_label);
-        label.setText(R.string.sign_up_full_name_text);
+        input.setNewInput(fullName)
+                .getLabel().setText(R.string.sign_up_full_name_text);
 
-        label = email.findViewById(R.id.labeled_input_label);
-        EditText edit = email.findViewById((R.id.labeled_input_edit));
-        label.setText(R.string.sign_up_email_text);
-        edit.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        input.setNewInput(email)
+                .getLabel().setText(R.string.sign_up_email_text);
+        input.getEdit().setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
     }
 
 }

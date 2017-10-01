@@ -1,4 +1,4 @@
-package it.szyszka.skillmarket.utils;
+package it.szyszka.skillmarket.utils.forms;
 
 /**
  * Created by rafal on 30.09.17.

@@ -1,4 +1,4 @@
-package it.szyszka.skillmarket.utils;
+package it.szyszka.skillmarket.utils.forms;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

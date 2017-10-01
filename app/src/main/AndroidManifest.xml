@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".modules.user.activities.SignInivity_"
+            android:name=".modules.user.activities.SignInActivity_"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>

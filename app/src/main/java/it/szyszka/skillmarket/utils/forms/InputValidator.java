@@ -1,4 +1,4 @@
-package it.szyszka.skillmarket.utils;
+package it.szyszka.skillmarket.utils.forms;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,22 +8,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import it.szyszka.skillmarket.R;
+import it.szyszka.skillmarket.utils.view.LabeledEditText;
 
-import static it.szyszka.skillmarket.utils.Rule.EMAIL;
-import static it.szyszka.skillmarket.utils.Rule.FULL_NAME;
-import static it.szyszka.skillmarket.utils.Rule.NOT_EMPTY;
-import static it.szyszka.skillmarket.utils.Rule.NO_WHITE_SPACES;
-import static it.szyszka.skillmarket.utils.Rule.STRONG_PASSWORD;
-import static it.szyszka.skillmarket.utils.StringValidator.validEmail;
-import static it.szyszka.skillmarket.utils.StringValidator.validFullName;
-import static it.szyszka.skillmarket.utils.StringValidator.validNoWhiteSpaces;
-import static it.szyszka.skillmarket.utils.StringValidator.validNotEmpty;
-import static it.szyszka.skillmarket.utils.StringValidator.validPassword;
+import static it.szyszka.skillmarket.utils.forms.Rule.EMAIL;
+import static it.szyszka.skillmarket.utils.forms.Rule.FULL_NAME;
+import static it.szyszka.skillmarket.utils.forms.Rule.NOT_EMPTY;
+import static it.szyszka.skillmarket.utils.forms.Rule.NO_WHITE_SPACES;
+import static it.szyszka.skillmarket.utils.forms.Rule.STRONG_PASSWORD;
+import static it.szyszka.skillmarket.utils.forms.StringValidator.validEmail;
+import static it.szyszka.skillmarket.utils.forms.StringValidator.validFullName;
+import static it.szyszka.skillmarket.utils.forms.StringValidator.validNoWhiteSpaces;
+import static it.szyszka.skillmarket.utils.forms.StringValidator.validNotEmpty;
+import static it.szyszka.skillmarket.utils.forms.StringValidator.validPassword;
 
 /**
  * Created by rafal on 30.09.17.
@@ -85,18 +85,17 @@ public class InputValidator {
 
     public List<Pair<TextView, Pair<Rule, Boolean>>> validateForm() {
         List<Pair<TextView, Pair<Rule, Boolean>>> result = new ArrayList<>();
-
+        LabeledEditText input = new LabeledEditText();
         for(Pair<Rule, View> tuple : rules) {
             Rule rule = tuple.first;
             View view = tuple.second;
 
-            TextView label = view.findViewById(R.id.labeled_input_label);
-            EditText edit = view.findViewById(R.id.labeled_input_edit);
+            input.setNewInput(view);
 
-            String input = edit.getText().toString();
+            String text = input.getEdit().getText().toString();
 
-            System.out.println("Checking: _" + input + "_" + rule);
-            result.add(Pair.create(label, validateByRule(rule, input)));
+            System.out.println("Checking: _" + text + "_" + rule);
+            result.add(Pair.create(input.getLabel(), validateByRule(rule, text)));
         }
         return result;
     }
@@ -132,10 +131,6 @@ public class InputValidator {
             default:
                 throw new IllegalArgumentException("Rule " + rule + " is not supported.");
         }
-    }
-
-    private Boolean markResult(Map validate) {
-        return null;
     }
 
 }

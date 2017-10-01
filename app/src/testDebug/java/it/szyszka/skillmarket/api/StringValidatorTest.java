@@ -2,7 +2,7 @@ package it.szyszka.skillmarket.api;
 
 import org.junit.Test;
 
-import it.szyszka.skillmarket.utils.StringValidator;
+import it.szyszka.skillmarket.utils.forms.StringValidator;
 
 import static org.junit.Assert.assertEquals;
 
