@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import java.util.Properties;
 
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.api.APIConfig;
+import it.szyszka.skillmarket.modules.security.HashGenerator;
 import it.szyszka.skillmarket.utils.PropertiesReader;
 import it.szyszka.skillmarket.utils.forms.InputValidator;
 import it.szyszka.skillmarket.utils.forms.Rule;
@@ -78,8 +80,16 @@ public class SignUpActivity extends AppCompatActivity {
                 .putExtra(Form.NICKNAME, getTextValueFromEditText((EditText) nickname.findViewById(R.id.labeled_input_edit)))
                 .putExtra(Form.FULL_NAME, getTextValueFromEditText((EditText) fullName.findViewById(R.id.labeled_input_edit)))
                 .putExtra(Form.EMAIL, getTextValueFromEditText((EditText) email.findViewById(R.id.labeled_input_edit)))
-                .putExtra(Form.PASSWORD, getTextValueFromEditText((EditText) password.findViewById(R.id.labeled_input_edit)))
+                .putExtra(Form.PASSWORD, hashPassword())
         );
+    }
+
+    private String hashPassword() {
+        String hash = HashGenerator.generateSHA256Key(
+                getTextValueFromEditText((EditText) password.findViewById(R.id.labeled_input_edit))
+        );
+        Log.i(TAG, "Hashed password: " + hash);
+        return hash;
     }
 
     private String getTextValueFromEditText(EditText editText) {

@@ -10,4 +10,6 @@ public interface UserService {
     @POST("user/reg")
     Call<UserResponse> signUpUser(@Body User user);
 
+
+
 }
