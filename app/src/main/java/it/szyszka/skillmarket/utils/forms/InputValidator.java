@@ -4,12 +4,10 @@ import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.utils.view.LabeledEditText;
@@ -57,23 +55,23 @@ public class InputValidator {
         textView.setTextColor(errorColor);
         switch (entry.second.first) {
             case EMAIL: {
-                textView.append(" \"" + context.getResources().getString(R.string.sign_up_wrong_email) + "\"");
+                textView.append(" \"" + context.getResources().getString(R.string.info_message_wrong_email) + "\"");
                 break;
             }
             case FULL_NAME: {
-                textView.append(" \"" + context.getResources().getString(R.string.sign_up_wrong_full_name) + "\"");
+                textView.append(" \"" + context.getResources().getString(R.string.info_message_wrong_full_name) + "\"");
                 break;
             }
             case STRONG_PASSWORD: {
-                textView.append(" \"" + context.getResources().getString(R.string.sign_up_wrong_password) + "\"");
+                textView.append(" \"" + context.getResources().getString(R.string.info_message_wrong_password) + "\"");
                 break;
             }
             case NO_WHITE_SPACES: {
-                textView.append(" \"" + context.getResources().getString(R.string.sign_up_no_white_spaces) + "\"");
+                textView.append(" \"" + context.getResources().getString(R.string.info_message_no_white_spaces) + "\"");
                 break;
             }
             case NOT_EMPTY: {
-                textView.append(" \"" + context.getResources().getString(R.string.sign_up_not_empty) + "\"");
+                textView.append(" \"" + context.getResources().getString(R.string.info_message_not_empty) + "\"");
                 break;
             }
             default: {

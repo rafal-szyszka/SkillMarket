@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 /**
  * Created by rafal on 19.08.17.
  */
-public class SMServerTest {
+public class APIConfigTest {
 
     @Test
     public void init() throws Exception {

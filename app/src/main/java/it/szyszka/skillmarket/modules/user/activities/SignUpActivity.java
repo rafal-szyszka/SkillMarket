@@ -1,13 +1,13 @@
 package it.szyszka.skillmarket.modules.user.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -17,9 +17,11 @@ import org.androidannotations.annotations.res.ColorRes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import it.szyszka.skillmarket.R;
-import it.szyszka.skillmarket.modules.user.model.User;
+import it.szyszka.skillmarket.api.APIConfig;
+import it.szyszka.skillmarket.utils.PropertiesReader;
 import it.szyszka.skillmarket.utils.forms.InputValidator;
 import it.szyszka.skillmarket.utils.forms.Rule;
 import it.szyszka.skillmarket.utils.view.LabeledEditText;
@@ -31,6 +33,8 @@ import it.szyszka.skillmarket.utils.view.LabeledEditText;
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = SignUpActivity_.class.getSimpleName();
+    public static final String EMAIL_TAKEN_KEY = "emailTakenKey";
+    public static final String NICKNAME_TAKEN_KEY = "nicknameTakenKey";
 
     public static class Form {
         public static String NICKNAME = "nickname";
@@ -118,6 +122,37 @@ public class SignUpActivity extends AppCompatActivity {
                 .getLabel().setText(R.string.sign_up_email_text);
         input.getEdit().setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 
+        initApi();
+        initWithExtras(input);
+    }
+
+    private void initWithExtras(LabeledEditText input) {
+        Bundle extras = getIntent().getExtras();
+        printErrorsIfExists(extras, input);
+    }
+
+    private void printErrorsIfExists(Bundle extras, LabeledEditText input) {
+        if(extras != null) {
+            Boolean emailTaken = extras.getBoolean(EMAIL_TAKEN_KEY, false);
+            Boolean nicknameTaken = extras.getBoolean(NICKNAME_TAKEN_KEY, false);
+
+            if(emailTaken) {
+                input.setNewInput(email);
+                input.getLabel().setTextColor(errorRed);
+                input.getLabel().append(" " + getString(R.string.error_message_email_taken));
+            }
+            if(nicknameTaken) {
+                input.setNewInput(nickname);
+                input.getLabel().setTextColor(errorRed);
+                input.getLabel().append(" " + getString(R.string.error_message_nickname_taken));
+            }
+        }
+    }
+
+    private void initApi() {
+        APIConfig.init(
+                new PropertiesReader(getAssets(), new Properties())
+        );
     }
 
 }

@@ -13,9 +13,19 @@
     <string name="sign_up_phone_number">Numer telefonu</string>
     <string name="sign_up_city">Miejscowość</string>
     <string name="sign_up_address">Nazwa i numer ulicy</string>
-    <string name="sign_up_no_white_spaces">Nie używaj spacji</string>
-    <string name="sign_up_wrong_full_name">Podaj Imię z nazwiskiem</string>
-    <string name="sign_up_wrong_email">Email nie jest poprawny</string>
-    <string name="sign_up_wrong_password">Min. 8 znaków</string>
-    <string name="sign_up_not_empty">Te pole jest wymagane</string>
+    <string name="info_message_no_white_spaces">Nie używaj spacji</string>
+    <string name="info_message_wrong_full_name">Podaj Imię z nazwiskiem</string>
+    <string name="info_message_wrong_email">Email nie jest poprawny</string>
+    <string name="info_message_wrong_password">Min. 8 znaków</string>
+    <string name="info_message_not_empty">Te pole jest wymagane</string>
+    <string name="error_message_uknown">Wystapil nieznany blad</string>
+
+    <string name="success_message_signed_up">Zostales pomyslnie zarejestrowany\nMozesz sie teraz zalogowac</string>
+    <string name="info_message_signing_up">Rejestrujemy Cie!</string>
+    <string name="error_message_email_taken">Email jest juz zajety</string>
+    <string name="error_message_nickname_taken">Pseudonim jest juz zajety</string>
+    <string name="success_message">Sukces</string>
+    <string name="failure_message">Ups :(</string>
+    <string name="info_message_wait">Momencik...</string>
+
 </resources>
