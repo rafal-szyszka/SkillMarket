@@ -33,4 +33,6 @@
     <string name="success_message">Success</string>
     <string name="failure_message">Failure :(</string>
     <string name="info_message_wait">Wait a second...</string>
+    <string name="info_message_signing_in">We are signing you in.</string>
+    <string name="error_message_no_internet">Check your internet connection</string>
 </resources>

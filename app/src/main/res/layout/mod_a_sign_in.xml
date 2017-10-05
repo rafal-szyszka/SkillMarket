@@ -38,16 +38,22 @@
                 android:id="@+id/sign_in_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:inputType="textEmailAddress"
                 android:drawableStart="@drawable/ic_person"
-                android:layout_marginBottom="10dp"/>
+                android:drawablePadding="@dimen/small_padding"
+                android:hint="@string/sign_up_email_text"
+                />
 
             <EditText
                 android:id="@+id/sign_in_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:drawableStart="@drawable/ic_key"/>
+                android:drawableStart="@drawable/ic_key"
+                android:drawablePadding="@dimen/small_padding"
+                android:hint="@string/sign_up_password_text"
+                />
 
         </LinearLayout>
 

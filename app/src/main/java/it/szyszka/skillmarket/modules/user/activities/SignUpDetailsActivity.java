@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -16,11 +15,9 @@ import it.szyszka.skillmarket.api.APIConfig;
 import it.szyszka.skillmarket.modules.user.api.UserResponse;
 import it.szyszka.skillmarket.modules.user.api.UserService;
 import it.szyszka.skillmarket.modules.user.model.User;
-import it.szyszka.skillmarket.modules.user.tasks.UserApiRequestHandler;
+import it.szyszka.skillmarket.modules.user.tasks.SignUpUserTask;
 import it.szyszka.skillmarket.utils.view.LabeledEditText;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by rafal on 01.10.17.
@@ -57,7 +54,7 @@ public class SignUpDetailsActivity extends AppCompatActivity{
         UserService client = APIConfig.getInstance().createUserApiClient();
         Call<UserResponse> response = client.signUpUser(user);
 
-        UserApiRequestHandler requestHandler = new UserApiRequestHandler(SignUpDetailsActivity.this);
+        SignUpUserTask requestHandler = new SignUpUserTask(SignUpDetailsActivity.this);
         requestHandler.execute(response);
 
     }

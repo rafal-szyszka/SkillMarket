@@ -27,5 +27,7 @@
     <string name="success_message">Sukces</string>
     <string name="failure_message">Ups :(</string>
     <string name="info_message_wait">Momencik...</string>
+    <string name="info_message_signing_in">Logujemy Cie</string>
+    <string name="error_message_no_internet">Check your internet connection</string>
 
 </resources>

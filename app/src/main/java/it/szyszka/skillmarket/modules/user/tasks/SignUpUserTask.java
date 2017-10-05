@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import it.szyszka.skillmarket.R;
-import it.szyszka.skillmarket.api.ApiResponse;
 import it.szyszka.skillmarket.modules.user.activities.SignInActivity;
 import it.szyszka.skillmarket.modules.user.activities.SignInActivity_;
 import it.szyszka.skillmarket.modules.user.activities.SignUpActivity;
@@ -22,13 +21,13 @@ import retrofit2.Response;
  * Created by rafal on 04.10.17.
  */
 
-public class UserApiRequestHandler extends AsyncTask<Call<UserResponse>, Void, Response<UserResponse>> implements ApiResponse<UserResponse> {
+public class SignUpUserTask extends MyAsyncTask<UserResponse, Void, UserResponse> {
 
-    private static final String TAG = UserApiRequestHandler.class.getSimpleName();
+    private static final String TAG = SignUpUserTask.class.getSimpleName();
     private Context context;
     private SweetAlertDialog alertDialog;
 
-    public UserApiRequestHandler(Context context) {
+    public SignUpUserTask(Context context) {
         this.context = context;
     }
 
@@ -47,7 +46,7 @@ public class UserApiRequestHandler extends AsyncTask<Call<UserResponse>, Void, R
         try {
             return calls[0].execute();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, e.getMessage());
         }
         return null;
     }
@@ -56,12 +55,16 @@ public class UserApiRequestHandler extends AsyncTask<Call<UserResponse>, Void, R
     protected void onPostExecute(Response<UserResponse> response) {
         super.onPostExecute(response);
         alertDialog.cancel();
+        handleResponse(response);
+    }
 
-        if(response.isSuccessful()) {
-            onSuccess(response);
-        } else {
-            onFailure(response);
-        }
+    @Override
+    public void onNoServerResponse() {
+        Intent intent;
+        intent = new Intent(context, SignInActivity_.class);
+        intent.putExtra(SignInActivity.MESSAGE_KEY, context.getString(R.string.error_message_no_internet));
+        intent.putExtra(SignInActivity.REGISTRATION_STATUS_KEY, false);
+        context.startActivity(intent);
     }
 
     @Override
@@ -74,21 +77,9 @@ public class UserApiRequestHandler extends AsyncTask<Call<UserResponse>, Void, R
         context.startActivity(intent);
     }
 
-    @Override
-    public void onFailure(Response<UserResponse> response) {
-        String errorMessage = null;
-        try {
-            errorMessage = response.errorBody().string();
-        } catch (IOException e) {
-            Log.e(TAG, "No error message found.");
-        }
-        if(errorMessage != null) {
-            handleErrors(errorMessage);
-        }
-    }
 
     @Override
-    public void handleErrors(String errorMessage) {
+    public void handleOnFailure(String errorMessage) {
         Intent intent;
 
         if (errorMessage.equals(UserErrorMessages.EMAIL_TAKEN.getMessage())) {

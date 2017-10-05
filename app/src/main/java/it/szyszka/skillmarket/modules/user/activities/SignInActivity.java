@@ -11,8 +11,18 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.Properties;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import it.szyszka.skillmarket.R;
+import it.szyszka.skillmarket.api.APIConfig;
+import it.szyszka.skillmarket.modules.security.HashGenerator;
+import it.szyszka.skillmarket.modules.user.api.UserService;
+import it.szyszka.skillmarket.modules.user.model.Credentials;
+import it.szyszka.skillmarket.modules.user.model.User;
+import it.szyszka.skillmarket.modules.user.tasks.SignInUserTask;
+import it.szyszka.skillmarket.utils.PropertiesReader;
+import retrofit2.Call;
 
 /**
  * Created by rafal on 30.09.17.
@@ -37,7 +47,21 @@ public class SignInActivity extends AppCompatActivity {
 
     @Click(R.id.sign_in_login)
     void signInUser(){
-        //// TODO: 30.09.17
+        Credentials credentials = createUserCredentials();
+
+        UserService client = APIConfig.getInstance().createUserApiClient();
+        Call<User> response = client.signIn(credentials.getBasicAuth(), emailInput.getText().toString());
+
+        SignInUserTask task = new SignInUserTask(this);
+        task.execute(response);
+    }
+
+    private Credentials createUserCredentials() {
+        Credentials credentials = Credentials.instantiate(
+                emailInput.getText().toString(),
+                HashGenerator.generateSHA256Key(passwordInput.getText().toString())
+        );
+        return credentials;
     }
 
     @Click(R.id.sign_in_sing_up)
@@ -48,6 +72,7 @@ public class SignInActivity extends AppCompatActivity {
     @AfterViews
     public void initView(){
         toolbar.setTitle(R.string.app_name);
+        initApi();
         initWithExtras();
     }
 
@@ -72,6 +97,12 @@ public class SignInActivity extends AppCompatActivity {
                 dialog.show();
             }
         }
+    }
+
+    private void initApi() {
+        APIConfig.init(
+                new PropertiesReader(getAssets(), new Properties())
+        );
     }
 
 }

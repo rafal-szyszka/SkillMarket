@@ -132,7 +132,6 @@ public class SignUpActivity extends AppCompatActivity {
                 .getLabel().setText(R.string.sign_up_email_text);
         input.getEdit().setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 
-        initApi();
         initWithExtras(input);
     }
 
@@ -157,12 +156,6 @@ public class SignUpActivity extends AppCompatActivity {
                 input.getLabel().append(" " + getString(R.string.error_message_nickname_taken));
             }
         }
-    }
-
-    private void initApi() {
-        APIConfig.init(
-                new PropertiesReader(getAssets(), new Properties())
-        );
     }
 
 }
