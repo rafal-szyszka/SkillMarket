@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Zarządzaj kontem">
+    <item android:title="@string/menu_item_manage_account">
         <menu>
             <item
                 android:id="@+id/nav_change_password"
                 android:icon="@drawable/ic_key"
-                android:title="Change password" />
+                android:title="@string/menu_item_change_password" />
 
             <item
                 android:id="@+id/nav_change_email"
                 android:icon="@drawable/ic_mail_dark"
-                android:title="Change email address" />
+                android:title="@string/menu_item_change_email_address" />
 
             <item
                 android:id="@+id/nav_change_address"
                 android:icon="@drawable/ic_home"
-                android:title="Change address" />
+                android:title="@string/menu_item_change_address" />
         </menu>
     </item>
 
     <item
         android:id="@+id/nav_maintain_announcements"
-        android:title="Zarządzaj ogłoszeniami" />
+        android:title="@string/menu_item_manage_offers" />
 
-    <item android:title="Przeglądaj">
+    <item android:title="@string/menu_item_explore">
         <menu>
             <item
                 android:id="@+id/nav_explore_announcements"
                 android:icon="@drawable/ic_offer"
-                android:title="Przeglądaj ogłoszenia"/>
+                android:title="@string/menu_item_explore_offers"/>
 
             <item
                 android:id="@+id/nav_explore_people"
                 android:icon="@drawable/ic_invite"
-                android:title="Szukaj znajomych"/>
+                android:title="@string/menu_item_explore_people"/>
         </menu>
     </item>
 
-    <item android:title="Zarządzaj osobami">
+    <item android:title="@string/menu_item_manage_people">
         <menu>
             <item
                 android:id="@+id/nav_maintain_friends"
                 android:icon="@drawable/ic_people"
-                android:title="Twoi znajomi"/>
+                android:title="@string/menu_item_your_friends"/>
 
             <item
                 android:id="@+id/nav_maintain_trusted"
                 android:icon="@drawable/ic_empty_people"
-                android:title="Zaufani giełdziarze"/>
+                android:title="@string/menu_item_trusted_people"/>
         </menu>
     </item>
 

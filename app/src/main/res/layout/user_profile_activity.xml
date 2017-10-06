@@ -2,24 +2,22 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/user_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
     <include
-        layout="@layout/app_bar_user_profile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        layout="@layout/user_profile_view" />
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/user_nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/mod_a_nav_header_user_profile"
+        app:headerLayout="@layout/user_navbar_header_view"
         app:menu="@menu/mod_a_main_user_profile_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

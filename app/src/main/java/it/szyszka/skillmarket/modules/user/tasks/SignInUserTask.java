@@ -7,6 +7,7 @@ import java.io.IOException;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.modules.user.activities.SignInActivity;
+import it.szyszka.skillmarket.modules.user.activities.UserProfileActivity_;
 import it.szyszka.skillmarket.modules.user.model.User;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -64,9 +65,8 @@ public class SignInUserTask extends MyAsyncTask<User, Void, User> {
 
     @Override
     protected void onSuccess(Response<User> response) {
-        // // TODO: 05.10.17 switch user to user profile activity
         Log.i(TAG, response.message());
-        Log.i(TAG, "Oh yeah");
+        UserProfileActivity_.intent(context).start();
     }
 
     @Override

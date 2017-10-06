@@ -2,12 +2,12 @@ package it.szyszka.skillmarket.modules.user.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.util.Pair;
-import android.view.View;
 import android.widget.EditText;
 
 import org.androidannotations.annotations.AfterViews;
@@ -18,20 +18,17 @@ import org.androidannotations.annotations.res.ColorRes;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import it.szyszka.skillmarket.R;
-import it.szyszka.skillmarket.api.APIConfig;
 import it.szyszka.skillmarket.modules.security.HashGenerator;
-import it.szyszka.skillmarket.utils.PropertiesReader;
+import it.szyszka.skillmarket.utils.Toggle;
 import it.szyszka.skillmarket.utils.forms.InputValidator;
 import it.szyszka.skillmarket.utils.forms.Rule;
-import it.szyszka.skillmarket.utils.view.LabeledEditText;
 
 /**
  * Created by rafal on 30.09.17.
  */
-@EActivity(R.layout.mod_a_sign_up)
+@EActivity(R.layout.user_sign_up_activity)
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = SignUpActivity_.class.getSimpleName();
@@ -45,59 +42,62 @@ public class SignUpActivity extends AppCompatActivity {
         public static String PASSWORD = "password";
     }
 
-    @ViewById(R.id.module_a_toolbar)
+    @ViewById(R.id.user_toolbar)
     Toolbar toolbar;
 
     @ViewById(R.id.sign_up_alias)
-    View nickname;
+    TextInputLayout nickname;
 
     @ViewById(R.id.sign_up_full_name)
-    View fullName;
+    TextInputLayout fullName;
 
     @ViewById(R.id.sign_up_email)
-    View email;
+    TextInputLayout email;
 
     @ViewById(R.id.sign_up_password)
-    View password;
+    TextInputLayout password;
 
     @ColorRes(R.color.errorRed)
     int errorRed;
 
-    @Click(R.id.sign_up_toggle_password)
-    void togglePasswordView() {
-        ((EditText)password.findViewById(R.id.labeled_input_edit)).setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-    }
-
     @Click(R.id.sign_up_create_account)
     void createAccount() {
-        InputValidator validator = new InputValidator(getInputs(), this);
-        Boolean formIsValid = validator.validate(errorRed);
+        InputValidator validator = new InputValidator(createInputRules(), this);
+        Boolean formIsValid = validator.validate();
         if(formIsValid) launchDetailsActivity();
+    }
+
+    @Click(R.id.sign_up_have_account)
+    void haveAccount() {
+        SignInActivity_.intent(this).start();
+    }
+
+    @AfterViews
+    void initView() {
+        toolbar.setTitle(R.string.app_name);
+
+        initWithExtras();
     }
 
     private void launchDetailsActivity(){
         startActivity(new Intent(this, SignUpDetailsActivity_.class)
-                .putExtra(Form.NICKNAME, getTextValueFromEditText((EditText) nickname.findViewById(R.id.labeled_input_edit)))
-                .putExtra(Form.FULL_NAME, getTextValueFromEditText((EditText) fullName.findViewById(R.id.labeled_input_edit)))
-                .putExtra(Form.EMAIL, getTextValueFromEditText((EditText) email.findViewById(R.id.labeled_input_edit)))
+                .putExtra(Form.NICKNAME, nickname.getEditText().getText().toString().trim())
+                .putExtra(Form.FULL_NAME, fullName.getEditText().getText().toString().trim())
+                .putExtra(Form.EMAIL, email.getEditText().getText().toString().trim())
                 .putExtra(Form.PASSWORD, hashPassword())
         );
     }
 
     private String hashPassword() {
         String hash = HashGenerator.generateSHA256Key(
-                getTextValueFromEditText((EditText) password.findViewById(R.id.labeled_input_edit))
+                password.getEditText().getText().toString()
         );
-        Log.i(TAG, "Hashed password: " + hash);
+        Log.i(TAG, "Hashed password.");
         return hash;
     }
 
-    private String getTextValueFromEditText(EditText editText) {
-        return editText.getText().toString();
-    }
-
-    private List<Pair<Rule, View>> getInputs() {
-        List<Pair<Rule, View>> inputs = new ArrayList<>();
+    private List<Pair<Rule, TextInputLayout>> createInputRules() {
+        List<Pair<Rule, TextInputLayout>> inputs = new ArrayList<>();
 
         inputs.add(Pair.create(Rule.NOT_EMPTY, nickname));
         inputs.add(Pair.create(Rule.NOT_EMPTY, email));
@@ -112,48 +112,21 @@ public class SignUpActivity extends AppCompatActivity {
         return inputs;
     }
 
-    @Click(R.id.sign_up_have_account)
-    void haveAccount() {
-        SignInActivity_.intent(this).start();
-    }
-
-    @AfterViews
-    void initView() {
-        toolbar.setTitle(R.string.app_name);
-
-        LabeledEditText input = new LabeledEditText();
-        input.setNewInput(nickname)
-                .getLabel().setText(R.string.sign_up_nickname_text);
-
-        input.setNewInput(fullName)
-                .getLabel().setText(R.string.sign_up_full_name_text);
-
-        input.setNewInput(email)
-                .getLabel().setText(R.string.sign_up_email_text);
-        input.getEdit().setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-
-        initWithExtras(input);
-    }
-
-    private void initWithExtras(LabeledEditText input) {
+    private void initWithExtras() {
         Bundle extras = getIntent().getExtras();
-        printErrorsIfExists(extras, input);
+        printErrorsIfExists(extras);
     }
 
-    private void printErrorsIfExists(Bundle extras, LabeledEditText input) {
+    private void printErrorsIfExists(Bundle extras) {
         if(extras != null) {
             Boolean emailTaken = extras.getBoolean(EMAIL_TAKEN_KEY, false);
             Boolean nicknameTaken = extras.getBoolean(NICKNAME_TAKEN_KEY, false);
 
             if(emailTaken) {
-                input.setNewInput(email);
-                input.getLabel().setTextColor(errorRed);
-                input.getLabel().append(" " + getString(R.string.error_message_email_taken));
+                email.setError(getString(R.string.error_message_email_taken));
             }
             if(nicknameTaken) {
-                input.setNewInput(nickname);
-                input.getLabel().setTextColor(errorRed);
-                input.getLabel().append(" " + getString(R.string.error_message_nickname_taken));
+                nickname.setError(getString(R.string.error_message_nickname_taken));
             }
         }
     }

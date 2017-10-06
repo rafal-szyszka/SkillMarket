@@ -23,8 +23,10 @@
             </intent-filter>
         </activity>
 
+        <!-- User activities -->
         <activity android:name=".modules.user.activities.SignUpActivity_" />
         <activity android:name=".modules.user.activities.SignUpDetailsActivity_" />
+        <activity android:name=".modules.user.activities.UserProfileActivity_" />
 
     </application>
 

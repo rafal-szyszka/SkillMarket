@@ -2,7 +2,6 @@ package it.szyszka.skillmarket.modules.user.tasks;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.IOException;
@@ -97,7 +96,7 @@ public class SignUpUserTask extends MyAsyncTask<UserResponse, Void, UserResponse
         } else {
 
             intent = new Intent(context, SignInActivity_.class);
-            intent.putExtra(SignInActivity.MESSAGE_KEY, context.getString(R.string.error_message_uknown));
+            intent.putExtra(SignInActivity.MESSAGE_KEY, context.getString(R.string.error_message_unknown));
             intent.putExtra(SignInActivity.REGISTRATION_STATUS_KEY, false);
             context.startActivity(intent);
 

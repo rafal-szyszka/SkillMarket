@@ -1,33 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Skill Market</string>
+
+    <!-- Formularz logowania -->
     <string name="sign_in_login_text">Zaloguj się</string>
     <string name="sign_in_sign_up_text">Zarejestruj się</string>
     <string name="sign_in_remember_me_text">Zapamiętaj mnie.</string>
+
+    <!-- Formularz rejestracji -->
     <string name="sign_up_nickname_text">Pseudonim</string>
     <string name="sign_up_full_name_text">Imię i nazwisko</string>
     <string name="sign_up_email_text">Adres e-mail</string>
     <string name="sign_up_password_text">Hasło</string>
     <string name="sign_up_create_account_text">Stwórz konto</string>
     <string name="sign_up_have_account_text"><u>Masz już konto? Zaloguj się.</u></string>
-    <string name="sign_up_phone_number">Numer telefonu</string>
-    <string name="sign_up_city">Miejscowość</string>
-    <string name="sign_up_address">Nazwa i numer ulicy</string>
-    <string name="info_message_no_white_spaces">Nie używaj spacji</string>
-    <string name="info_message_wrong_full_name">Podaj Imię z nazwiskiem</string>
-    <string name="info_message_wrong_email">Email nie jest poprawny</string>
-    <string name="info_message_wrong_password">Min. 8 znaków</string>
-    <string name="info_message_not_empty">Te pole jest wymagane</string>
-    <string name="error_message_uknown">Wystapil nieznany blad</string>
+    <string name="sign_up_phone_number_text">Numer telefonu</string>
+    <string name="sign_up_city_text">Miejscowość</string>
+    <string name="sign_up_address_text">Nazwa i numer ulicy</string>
 
-    <string name="success_message_signed_up">Zostales pomyslnie zarejestrowany\nMozesz sie teraz zalogowac</string>
+    <!-- Wiadomosci informacyjne -->
     <string name="info_message_signing_up">Rejestrujemy Cie!</string>
-    <string name="error_message_email_taken">Email jest juz zajety</string>
-    <string name="error_message_nickname_taken">Pseudonim jest juz zajety</string>
-    <string name="success_message">Sukces</string>
-    <string name="failure_message">Ups :(</string>
     <string name="info_message_wait">Momencik...</string>
     <string name="info_message_signing_in">Logujemy Cie</string>
-    <string name="error_message_no_internet">Check your internet connection</string>
+
+    <!-- Komunikaty bledow -->
+    <string name="error_message_no_white_spaces">Nie używaj spacji</string>
+    <string name="error_message_wrong_full_name">Podaj Imię z nazwiskiem</string>
+    <string name="error_message_not_valid_email">Email nie jest poprawny</string>
+    <string name="error_message_wrong_password">Min. 8 znaków</string>
+    <string name="error_message_not_empty">Te pole jest wymagane</string>
+    <string name="error_message_unknown">Wystapil nieznany blad</string>
+    <string name="error_message_email_taken">Email jest juz zajety</string>
+    <string name="error_message_nickname_taken">Pseudonim jest juz zajety</string>
+    <string name="error_message_no_internet">Sprawdz polaczenie z internetem</string>
+    <string name="failure_message">Ups :(</string>
+
+    <!-- Komunikaty sukcesow -->
+    <string name="success_message_signed_up">Zostales pomyslnie zarejestrowany\nMozesz sie teraz zalogowac</string>
+    <string name="success_message">Sukces</string>
+
+    <!-- Etykiety menu uzytkownika -->
+    <string name="menu_item_manage_account">Zarządzaj kontem</string>
+    <string name="menu_item_change_password">Zmien haslo</string>
+    <string name="menu_item_change_email_address">Zmien adres email</string>
+    <string name="menu_item_change_address">Zmien adres zamieszkania</string>
+    <string name="menu_item_manage_offers">Zarządzaj ogłoszeniami</string>
+    <string name="menu_item_explore">Przeglądaj</string>
+    <string name="menu_item_explore_offers">Przeglądaj ogłoszenia</string>
+    <string name="menu_item_explore_people">Szukaj znajomych</string>
+    <string name="menu_item_manage_people">Zarządzaj osobami</string>
+    <string name="menu_item_your_friends">Twoi znajomi</string>
+    <string name="menu_item_trusted_people">Zaufani giełdziarze</string>
+
+    <!-- Etykiety klawiszy -->
+    <string name="button_text_continue">Dalej</string>
 
 </resources>
