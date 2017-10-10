@@ -27,7 +27,7 @@
     <string name="success_message_signed_up">Your account was successfully registered. You can sign in now.</string>
 
     <!-- Errors and failures -->
-    <string name="failure_message">Failure :(</string>
+    <string name="error_message_failure">Failure :(</string>
     <string name="error_message_unknown">Unknown error occurred</string>
     <string name="error_message_no_white_spaces">Don\'t use spaces</string>
     <string name="error_message_wrong_full_name">Add your last name</string>
@@ -62,4 +62,5 @@
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin placerat vestibulum feugiat. Sed eget malesuada libero. Vestibulum quis fermentum libero. Vestibulum lectus orci, egestas a ligula in, faucibus viverra felis. Donec posuere sollicitudin neque, ac blandit diam iaculis ut. Ut finibus ante enim, ultricies pharetra felis sagittis a. Nulla porta quam id ligula porta, vitae fermentum augue pharetra. Vivamus scelerisque ligula et enim suscipit condimentum.</string>
     <string name="sampleoffer">Szukasz solidnej i uczciwej Firmy? Chciałbyś mieć porządnie odnowioną podłogę w rozsądnej cenie? Specjalizujemy się w cyklinowaniu i układaniu podłóg, posiadamy wieloletnie doświadczenie poparte setkami zadowolonych Klientów. Każde zlecenie wykonujemy starannie zapewniając jednocześnie wysoką estetykę prac. Cenimy sobie uczciwe i jasne zasady, dlatego wielu Klientów po jakimś czasie wraca do nas z kolejnymi prośbami. W naszej ofercie:\n- cyklinowanie bezpyłowe podłóg i schodów\n- lakierowanie(używamy tylko sprawdzonych i trwałych lakierów)\n- olejowanie, bejcowanie(barwienie)\n- montaż listw przypodłogowych\n- renowacja podłóg zabytkowych\n- szpachlowanie ubytków\n- pomiary wilgotności, osuszanie\n\nZajmujemy się także układaniem wszelkiego rodzaju podłóg. Wszystkie prace wykonujemy z wykorzystaniem nowoczesnych cykliniarek bezpyłowych. Zapewniamy pomoc i fachowe doradztwo podczas wyboru materiałów. Zawsze staramy się zachować równowagę pomiędzy wysoką jakością a przystępnymi cenami. Nasze prace wykonujemy w mieszkaniach, szkołach, halach sportowych, itp. Jesteśmy przyjaźnie nastawieni do nowych Klientów, dlatego zapraszamy do kontaktu i składania zapytań.\nGwarantujemy niskie ceny, zapraszamy. Tel. 733-534-222</string>
     <string name="button_text_continue">Continue</string>
+    <string name="error_message_invalid_credentials">Check your credentials and try again.</string>
 </resources>

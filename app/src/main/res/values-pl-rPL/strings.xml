@@ -33,7 +33,8 @@
     <string name="error_message_email_taken">Email jest juz zajety</string>
     <string name="error_message_nickname_taken">Pseudonim jest juz zajety</string>
     <string name="error_message_no_internet">Sprawdz polaczenie z internetem</string>
-    <string name="failure_message">Ups :(</string>
+    <string name="error_message_invalid_credentials">Sprawdz dane logowania i sprobuj ponownie.</string>
+    <string name="error_message_failure">Ups :(</string>
 
     <!-- Komunikaty sukcesow -->
     <string name="success_message_signed_up">Zostales pomyslnie zarejestrowany\nMozesz sie teraz zalogowac</string>

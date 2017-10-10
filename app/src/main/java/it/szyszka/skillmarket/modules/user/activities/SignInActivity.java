@@ -33,7 +33,7 @@ import retrofit2.Call;
 public class SignInActivity extends AppCompatActivity {
 
     public static final String MESSAGE_KEY = "messageKey";
-    public static final String REGISTRATION_STATUS_KEY = "registrationStatus";
+    public static final String STATUS_KEY = "status";
 
     @ViewById(R.id.user_toolbar)
     Toolbar toolbar;
@@ -100,7 +100,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private void showMessageFromExtra(Bundle extras) {
         if(extras != null) {
-            if(extras.getBoolean(REGISTRATION_STATUS_KEY, false)) {
+            if(extras.getBoolean(STATUS_KEY, false)) {
                 SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
                 dialog.setCancelable(true);
                 dialog.setTitleText(getString(R.string.success_message));
@@ -109,7 +109,7 @@ public class SignInActivity extends AppCompatActivity {
             } else {
                 SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE);
                 dialog.setCancelable(true);
-                dialog.setTitleText(getString(R.string.failure_message));
+                dialog.setTitleText(getString(R.string.error_message_failure));
                 dialog.setContentText(extras.getString(MESSAGE_KEY));
                 dialog.show();
             }

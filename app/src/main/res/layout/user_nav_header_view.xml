@@ -23,7 +23,7 @@
         android:id="@+id/header_full_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/small_padding"
+        android:paddingTop="@dimen/extra_small_padding"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView

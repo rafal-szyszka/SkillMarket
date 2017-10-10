@@ -1,5 +1,6 @@
 package it.szyszka.skillmarket.modules.user.tasks;
 
+import android.content.Intent;
 import android.util.Log;
 
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.modules.user.activities.SignInActivity;
+import it.szyszka.skillmarket.modules.user.activities.UserProfileActivity;
 import it.szyszka.skillmarket.modules.user.activities.UserProfileActivity_;
 import it.szyszka.skillmarket.modules.user.model.User;
 import retrofit2.Call;
@@ -57,7 +59,7 @@ public class SignInUserTask extends MyAsyncTask<User, Void, User> {
     @Override
     public void onNoServerResponse() {
         alertDialog = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
-        alertDialog.setTitleText(context.getString(R.string.failure_message));
+        alertDialog.setTitleText(context.getString(R.string.error_message_failure));
         alertDialog.setContentText(context.getString(R.string.error_message_no_internet));
         alertDialog.setCancelable(true);
         alertDialog.show();
@@ -66,12 +68,18 @@ public class SignInUserTask extends MyAsyncTask<User, Void, User> {
     @Override
     protected void onSuccess(Response<User> response) {
         Log.i(TAG, response.message());
-        UserProfileActivity_.intent(context).start();
+        Intent intent = new Intent(context, UserProfileActivity_.class);
+        intent.putExtra(UserProfileActivity.SIGNED_IN_USER, response.body());
+        context.startActivity(intent);
     }
 
     @Override
     public void handleOnFailure(String errorMessage) {
         Log.e(TAG, errorMessage);
-        Log.e(TAG, "Oh no");
+        alertDialog = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
+        alertDialog.setTitleText(context.getString(R.string.error_message_failure));
+        alertDialog.setContentText(context.getString(R.string.error_message_invalid_credentials));
+        alertDialog.setCancelable(true);
+        alertDialog.show();
     }
 }

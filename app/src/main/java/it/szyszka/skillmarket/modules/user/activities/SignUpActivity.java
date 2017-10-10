@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.util.Log;
 import android.util.Pair;
-import android.widget.EditText;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -21,7 +19,6 @@ import java.util.List;
 
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.modules.security.HashGenerator;
-import it.szyszka.skillmarket.utils.Toggle;
 import it.szyszka.skillmarket.utils.forms.InputValidator;
 import it.szyszka.skillmarket.utils.forms.Rule;
 

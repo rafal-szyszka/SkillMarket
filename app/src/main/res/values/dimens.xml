@@ -23,4 +23,7 @@
     <dimen name="small_padding">20dp</dimen>
     <dimen name="regular_padding">30dp</dimen>
 
+    <!-- tiles -->
+    <dimen name="tile_size">140dp</dimen>
+
 </resources>

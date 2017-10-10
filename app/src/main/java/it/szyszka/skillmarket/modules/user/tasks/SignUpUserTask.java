@@ -62,7 +62,7 @@ public class SignUpUserTask extends MyAsyncTask<UserResponse, Void, UserResponse
         Intent intent;
         intent = new Intent(context, SignInActivity_.class);
         intent.putExtra(SignInActivity.MESSAGE_KEY, context.getString(R.string.error_message_no_internet));
-        intent.putExtra(SignInActivity.REGISTRATION_STATUS_KEY, false);
+        intent.putExtra(SignInActivity.STATUS_KEY, false);
         context.startActivity(intent);
     }
 
@@ -72,7 +72,7 @@ public class SignUpUserTask extends MyAsyncTask<UserResponse, Void, UserResponse
         Log.i(TAG, "Successfully handled request: " + response.body());
         intent = new Intent(context, SignInActivity_.class);
         intent.putExtra(SignInActivity.MESSAGE_KEY, context.getString(R.string.success_message_signed_up));
-        intent.putExtra(SignInActivity.REGISTRATION_STATUS_KEY, true);
+        intent.putExtra(SignInActivity.STATUS_KEY, true);
         context.startActivity(intent);
     }
 
@@ -97,7 +97,7 @@ public class SignUpUserTask extends MyAsyncTask<UserResponse, Void, UserResponse
 
             intent = new Intent(context, SignInActivity_.class);
             intent.putExtra(SignInActivity.MESSAGE_KEY, context.getString(R.string.error_message_unknown));
-            intent.putExtra(SignInActivity.REGISTRATION_STATUS_KEY, false);
+            intent.putExtra(SignInActivity.STATUS_KEY, false);
             context.startActivity(intent);
 
         }
