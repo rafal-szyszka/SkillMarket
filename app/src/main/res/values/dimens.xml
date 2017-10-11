@@ -25,5 +25,6 @@
 
     <!-- tiles -->
     <dimen name="tile_size">140dp</dimen>
+    <dimen name="action_tile_icon_size">44dp</dimen>
 
 </resources>

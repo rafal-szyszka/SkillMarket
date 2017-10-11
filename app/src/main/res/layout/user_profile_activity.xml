@@ -9,6 +9,7 @@
     tools:openDrawer="start">
 
     <include
+        android:id="@+id/user_profile_view"
         layout="@layout/user_profile_view" />
 
     <android.support.design.widget.NavigationView

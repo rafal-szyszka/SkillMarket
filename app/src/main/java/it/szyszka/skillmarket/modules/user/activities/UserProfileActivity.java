@@ -6,20 +6,27 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import it.szyszka.skillmarket.R;
+import it.szyszka.skillmarket.modules.user.fragments.TileMenuFragment;
 import it.szyszka.skillmarket.modules.user.listeners.UserNavigationMenuListener;
 import it.szyszka.skillmarket.modules.user.model.User;
 
@@ -47,12 +54,27 @@ public class UserProfileActivity extends AppCompatActivity {
     @ViewById(R.id.user_nav_view)
     NavigationView navigationView;
 
+    @ViewById(R.id.user_profile_view)
+    View profileView;
+
     @AfterViews
-    void initView(){
+    void initView() {
         readExtras();
         configureToolbar();
         configureNavigationDrawer();
         configureNavDrawerHeader();
+        initHelloFragment();
+    }
+
+    private void initHelloFragment() {
+        TileMenuFragment tileMenu = TileMenuFragment.newInstance(
+                new ArrayList<>(Arrays.asList(R.drawable.ic_mail_dark, R.drawable.ic_people)),
+                new ArrayList<>(Arrays.asList("Wiadomości", "Ludzie"))
+        );
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragments, tileMenu);
+        transaction.commit();
     }
 
     private void configureNavDrawerHeader() {
@@ -72,7 +94,7 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void checkExtras() {
-        if(signedUser == null) {
+        if (signedUser == null) {
             Intent intent = new Intent(this, SignInActivity_.class);
             intent.putExtra(STATUS_KEY, false);
             intent.putExtra(MESSAGE_KEY, getString(R.string.error_message_unknown));
@@ -108,27 +130,27 @@ public class UserProfileActivity extends AppCompatActivity {
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close
         ) {
-               @Override
-               public void onDrawerClosed(View drawerView) {
-                   super.onDrawerClosed(drawerView);
-               }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
 
-               @Override
-               public void onDrawerOpened(View drawerView) {
-                   super.onDrawerOpened(drawerView);
-               }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
         };
     }
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if(drawerToggle != null) drawerToggle.syncState();
+        if (drawerToggle != null) drawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if(drawerToggle != null) drawerToggle.syncState();
+        if (drawerToggle != null) drawerToggle.syncState();
     }
 }

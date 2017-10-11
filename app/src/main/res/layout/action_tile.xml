@@ -4,22 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentEnd="true"
-    android:background="#91FFFFFF"
+    android:background="#75F1F2F1"
     android:orientation="vertical"
-    android:padding="@dimen/regular_padding">
+    android:padding="@dimen/small_padding" >
 
     <ImageView
-        android:id="@+id/user_tile_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tile_image"
+        android:layout_width="@dimen/action_tile_icon_size"
+        android:layout_height="@dimen/action_tile_icon_size"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/large_margin"
         app:srcCompat="@drawable/ic_person" />
 
     <TextView
-        android:id="@+id/user_tile_text"
+        android:id="@+id/tile_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:textAllCaps="true" />
 
 
 </LinearLayout>
