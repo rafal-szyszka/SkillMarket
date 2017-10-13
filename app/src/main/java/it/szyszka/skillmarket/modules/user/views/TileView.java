@@ -15,8 +15,10 @@ public class TileView {
 
     @Getter @Setter private ImageView icon;
     @Getter @Setter private TextView label;
+    private View parent;
 
     public TileView(View tile) {
+        parent = tile;
         icon = tile.findViewById(R.id.tile_image);
         label = tile.findViewById(R.id.tile_text);
     }
@@ -27,6 +29,10 @@ public class TileView {
 
     public void replaceLabelTextWith(String text) {
         label.setText(text);
+    }
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        parent.setOnClickListener(onClickListener);
     }
 
 }

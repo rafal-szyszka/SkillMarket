@@ -47,7 +47,7 @@ public class SignInActivity extends AppCompatActivity {
     @ViewById(R.id.sign_in_message)
     TextView message;
 
-    @ColorRes(R.color.errorRed)
+    @ColorRes(R.color.colorErrorRed)
     int errorRed;
 
     @ColorRes(R.color.text_color)

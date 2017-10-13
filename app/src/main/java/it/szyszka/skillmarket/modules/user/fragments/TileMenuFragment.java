@@ -7,14 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.androidannotations.annotations.ViewsById;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import it.szyszka.skillmarket.R;
+import it.szyszka.skillmarket.modules.user.listeners.ParcelableClickListener;
 import it.szyszka.skillmarket.modules.user.views.TileView;
 
 /**
@@ -24,16 +23,19 @@ public class TileMenuFragment extends Fragment {
 
     public static final String ICONS_EXTRAS = "icons";
     public static final String LABELS_EXTRAS = "labels";
+    public static final String LISTENERS_EXTRAS = "listeners";
 
     private ArrayList<Integer> icons;
     private ArrayList<String> labels;
+    private ArrayList<ParcelableClickListener> listeners;
 
-    public static TileMenuFragment newInstance(ArrayList<Integer> icons, ArrayList<String> labels) {
+    public static TileMenuFragment newInstance(ArrayList<Integer> icons, ArrayList<String> labels, ArrayList<ParcelableClickListener> listeners) {
         TileMenuFragment menuFragment = new TileMenuFragment();
 
         Bundle extras = new Bundle();
         extras.putIntegerArrayList(ICONS_EXTRAS, icons);
         extras.putStringArrayList(LABELS_EXTRAS, labels);
+        extras.putParcelableArrayList(LISTENERS_EXTRAS, listeners);
 
         menuFragment.setArguments(extras);
         return menuFragment;
@@ -58,12 +60,7 @@ public class TileMenuFragment extends Fragment {
     }
 
     private void initTiles(ViewHandle handle) {
-        Iterator<Integer> iconIterator = icons.iterator();
-        Iterator<String> labelIterator = labels.iterator();
-        for(TileView tile : handle.toList()) {
-            tile.replaceIconImageWith(iconIterator.hasNext() ? iconIterator.next() : R.drawable.ic_default_category);
-            tile.replaceLabelTextWith(labelIterator.hasNext() ? labelIterator.next() : "");
-        }
+        handle.setIconsLabelsAndListeners();
     }
 
     @Override
@@ -77,6 +74,7 @@ public class TileMenuFragment extends Fragment {
     private void handleArguments(Bundle arguments) {
         icons = arguments.getIntegerArrayList(ICONS_EXTRAS);
         labels = arguments.getStringArrayList(LABELS_EXTRAS);
+        listeners = arguments.getParcelableArrayList(LISTENERS_EXTRAS);
     }
 
     private class ViewHandle {
@@ -99,6 +97,25 @@ public class TileMenuFragment extends Fragment {
 
         List<TileView> toList() {
             return Arrays.asList(upperLeft, upperRight, centerLeft, centerRight, bottomLeft, bottomRight);
+        }
+
+        void setIconsLabelsAndListeners() {
+            Iterator<Integer> iconIterator = icons.iterator();
+            Iterator<String> labelIterator = labels.iterator();
+            Iterator<ParcelableClickListener> listenerIterator = listeners.iterator();
+            for(TileView tile : toList()) {
+                tile.replaceIconImageWith(
+                        iconIterator.hasNext() ? iconIterator.next() : R.drawable.ic_default_category
+                );
+
+                tile.replaceLabelTextWith(
+                        labelIterator.hasNext() ? labelIterator.next() : ""
+                );
+
+                tile.setOnClickListener(
+                        listenerIterator.hasNext() ? listenerIterator.next() : null
+                );
+            }
         }
     }
 }

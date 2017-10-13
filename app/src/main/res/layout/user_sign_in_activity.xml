@@ -14,11 +14,12 @@
 
     <ImageView
         android:id="@+id/sign_in_app_logo"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/user_toolbar"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@mipmap/app_logo" />
+        android:layout_marginTop="@dimen/regular_margin"
+        app:srcCompat="@mipmap/ic_app_logo" />
 
     <LinearLayout
         android:id="@+id/sign_in_main_container"

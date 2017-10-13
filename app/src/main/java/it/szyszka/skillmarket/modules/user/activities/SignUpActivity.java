@@ -54,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
     @ViewById(R.id.sign_up_password)
     TextInputLayout password;
 
-    @ColorRes(R.color.errorRed)
+    @ColorRes(R.color.colorErrorRed)
     int errorRed;
 
     @Click(R.id.sign_up_create_account)

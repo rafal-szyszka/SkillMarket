@@ -1,60 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/tile_bg"
-    android:orientation="vertical"
     android:padding="@dimen/regular_padding">
 
-    <include
-        android:id="@+id/upper_left_tile"
-        layout="@layout/action_tile"
-        android:layout_width="@dimen/tile_size"
-        android:layout_height="@dimen/tile_size"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/upper_right_tile"
-        layout="@layout/action_tile"
-        android:layout_width="@dimen/tile_size"
-        android:layout_height="@dimen/tile_size"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true" />
+        <include
+            android:id="@+id/upper_left_tile"
+            layout="@layout/action_tile"
+            android:layout_width="@dimen/tile_size"
+            android:layout_height="@dimen/tile_size"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
 
-    <include
-        android:id="@+id/center_left_tile"
-        layout="@layout/action_tile"
-        android:layout_width="@dimen/tile_size"
-        android:layout_height="@dimen/tile_size"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
+        <include
+            android:id="@+id/upper_right_tile"
+            layout="@layout/action_tile"
+            android:layout_width="@dimen/tile_size"
+            android:layout_height="@dimen/tile_size"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true" />
 
-    <include
-        android:id="@+id/center_right_tile"
-        layout="@layout/action_tile"
-        android:layout_width="@dimen/tile_size"
-        android:layout_height="@dimen/tile_size"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true" />
+        <include
+            android:id="@+id/center_left_tile"
+            layout="@layout/action_tile"
+            android:layout_width="@dimen/tile_size"
+            android:layout_height="@dimen/tile_size"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/upper_left_tile"
+            android:layout_marginTop="@dimen/large_margin"/>
 
-    <include
-        android:id="@+id/bottom_left_tile"
-        layout="@layout/action_tile"
-        android:layout_width="@dimen/tile_size"
-        android:layout_height="@dimen/tile_size"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
+        <include
+            android:id="@+id/center_right_tile"
+            layout="@layout/action_tile"
+            android:layout_width="@dimen/tile_size"
+            android:layout_height="@dimen/tile_size"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/upper_right_tile"
+            android:layout_marginTop="@dimen/large_margin" />
 
-    <include
-        android:id="@+id/bottom_right_tile"
-        layout="@layout/action_tile"
-        android:layout_width="@dimen/tile_size"
-        android:layout_height="@dimen/tile_size"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true" />
+        <include
+            android:id="@+id/bottom_left_tile"
+            layout="@layout/action_tile"
+            android:layout_width="@dimen/tile_size"
+            android:layout_height="@dimen/tile_size"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/center_left_tile"
+            android:layout_marginTop="@dimen/large_margin" />
 
+        <include
+            android:id="@+id/bottom_right_tile"
+            layout="@layout/action_tile"
+            android:layout_width="@dimen/tile_size"
+            android:layout_height="@dimen/tile_size"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/center_right_tile"
+            android:layout_marginTop="@dimen/large_margin" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

@@ -19,9 +19,9 @@
     <string name="sign_up_address_text">Nazwa i numer ulicy</string>
 
     <!-- Wiadomosci informacyjne -->
-    <string name="info_message_signing_up">Rejestrujemy Cie!</string>
+    <string name="info_message_signing_up">Rejestrujemy Cię</string>
     <string name="info_message_wait">Momencik...</string>
-    <string name="info_message_signing_in">Logujemy Cie</string>
+    <string name="info_message_signing_in">Logujemy Cię</string>
 
     <!-- Komunikaty bledow -->
     <string name="error_message_no_white_spaces">Nie używaj spacji</string>
@@ -29,22 +29,21 @@
     <string name="error_message_not_valid_email">Email nie jest poprawny</string>
     <string name="error_message_wrong_password">Min. 8 znaków</string>
     <string name="error_message_not_empty">Te pole jest wymagane</string>
-    <string name="error_message_unknown">Wystapil nieznany blad</string>
-    <string name="error_message_email_taken">Email jest juz zajety</string>
-    <string name="error_message_nickname_taken">Pseudonim jest juz zajety</string>
-    <string name="error_message_no_internet">Sprawdz polaczenie z internetem</string>
-    <string name="error_message_invalid_credentials">Sprawdz dane logowania i sprobuj ponownie.</string>
+    <string name="error_message_unknown">Wystapił nieznany błąd</string>
+    <string name="error_message_email_taken">Email jest już zajęty</string>
+    <string name="error_message_nickname_taken">Pseudonim jest już zajęty</string>
+    <string name="error_message_no_internet">Sprawdź połączenie z internetem</string>
+    <string name="error_message_invalid_credentials">Sprawdź dane logowania i spróbuj ponownie.</string>
     <string name="error_message_failure">Ups :(</string>
 
     <!-- Komunikaty sukcesow -->
-    <string name="success_message_signed_up">Zostales pomyslnie zarejestrowany\nMozesz sie teraz zalogowac</string>
+    <string name="success_message_signed_up">Zostałeś pomyślnie zarejestrowany\nMożesz sie teraz zalogować</string>
     <string name="success_message">Sukces</string>
 
     <!-- Etykiety menu uzytkownika -->
     <string name="menu_item_manage_account">Zarządzaj kontem</string>
-    <string name="menu_item_change_password">Zmien haslo</string>
-    <string name="menu_item_change_email_address">Zmien adres email</string>
-    <string name="menu_item_change_address">Zmien adres zamieszkania</string>
+    <string name="menu_item_change_password">Zmień hasło</string>
+    <string name="menu_item_change_address">Zmień adres zamieszkania</string>
     <string name="menu_item_manage_offers">Zarządzaj ogłoszeniami</string>
     <string name="menu_item_explore">Przeglądaj</string>
     <string name="menu_item_explore_offers">Przeglądaj ogłoszenia</string>
@@ -52,6 +51,25 @@
     <string name="menu_item_manage_people">Zarządzaj osobami</string>
     <string name="menu_item_your_friends">Twoi znajomi</string>
     <string name="menu_item_trusted_people">Zaufani giełdziarze</string>
+    <string name="menu_item_change_email_address">Zmień adres email</string>
+
+    <!-- Etykiety kafelek -->
+    <string name="action_label_account">Twoje konto</string>
+    <string name="action_label_mails">Wiadomości</string>
+    <string name="action_label_people">Ludzie</string>
+    <string name="action_label_offers">Ogłoszenia</string>
+    <string name="action_label_settings">Ustawienia</string>
+    <string name="action_label_logout">Wyloguj</string>
+
+    <!-- Etykiety kafelek w tablicy -->
+    <string-array name="action_tiles_labels_array">
+        <item>Twoje konto</item>
+        <item>Wiadomości</item>
+        <item>Ludzie</item>
+        <item>Ogłoszenia</item>
+        <item>Ustawienia</item>
+        <item>Wyloguj</item>
+    </string-array>
 
     <!-- Etykiety klawiszy -->
     <string name="button_text_continue">Dalej</string>
