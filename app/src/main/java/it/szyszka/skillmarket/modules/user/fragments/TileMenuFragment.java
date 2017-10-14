@@ -1,7 +1,6 @@
 package it.szyszka.skillmarket.modules.user.fragments;
 
 import android.os.Bundle;
-import android.service.quicksettings.Tile;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

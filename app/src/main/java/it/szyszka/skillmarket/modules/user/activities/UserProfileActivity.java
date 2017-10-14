@@ -19,9 +19,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.modules.user.fragments.TileMenuFragment;
 import it.szyszka.skillmarket.modules.user.fragments.configuration.DefaultTileConfig;
