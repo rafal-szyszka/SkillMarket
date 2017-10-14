@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,16 +23,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import it.szyszka.skillmarket.R;
-import it.szyszka.skillmarket.modules.announcements.fragments.OffersTile_;
-import it.szyszka.skillmarket.modules.application.fragments.AppSettingsFragment_;
-import it.szyszka.skillmarket.modules.user.fragments.LogoutTile;
-import it.szyszka.skillmarket.modules.user.fragments.MailsTile_;
-import it.szyszka.skillmarket.modules.user.fragments.PeopleTile_;
-import it.szyszka.skillmarket.modules.user.fragments.UserAccountTile_;
-import it.szyszka.skillmarket.modules.user.fragments.management.TileConfiguration;
-import it.szyszka.skillmarket.modules.user.fragments.management.TileManager;
-import it.szyszka.skillmarket.modules.user.fragments.management.TileWorker;
-import it.szyszka.skillmarket.modules.user.listeners.ListenersManager;
+import it.szyszka.skillmarket.modules.user.fragments.TileMenuFragment;
+import it.szyszka.skillmarket.modules.user.fragments.configuration.DefaultTileConfig;
 import it.szyszka.skillmarket.modules.user.listeners.UserNavigationMenuListener;
 import it.szyszka.skillmarket.modules.user.model.User;
 
@@ -73,52 +65,17 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void initHelloFragment() {
-        TileConfiguration tileConfiguration = configureTileMenu();
-
-        TileManager manager = new TileManager(
-                new TileWorker(tileConfiguration)
+        FragmentManager manager = getSupportFragmentManager();
+        DefaultTileConfig defaultConfig = new DefaultTileConfig(
+                getApplicationContext(),
+                R.id.fragments,
+                manager
         );
-        manager.setFragmentManager(getSupportFragmentManager());
-        manager.setContainerId(R.id.fragments);
-        manager.initTileMenu();
-    }
 
-    private TileConfiguration configureTileMenu() {
-        return new TileConfiguration(
-                prepareTileMenuIcons(),
-                prepareTileMenuLabels(),
-                prepareFragments()
-        );
-    }
-
-    private ArrayList<Fragment> prepareFragments() {
-        ArrayList<Fragment> fragments = new ArrayList<>();
-        populateFragments(fragments);
-        return fragments;
-    }
-
-    private void populateFragments(ArrayList<Fragment> fragments) {
-        fragments.add(new UserAccountTile_());
-        fragments.add(new MailsTile_());
-        fragments.add(new PeopleTile_());
-        fragments.add(new OffersTile_());
-        fragments.add(new AppSettingsFragment_());
-        fragments.add(new LogoutTile(getApplicationContext()));
-    }
-
-    @NonNull
-    private ArrayList<String> prepareTileMenuLabels() {
-        return new ArrayList<>(Arrays.asList(
-                getResources().getStringArray(R.array.action_tiles_labels_array))
-        );
-    }
-
-    @NonNull
-    private ArrayList<Integer> prepareTileMenuIcons() {
-        return new ArrayList<>(Arrays.asList(
-                R.mipmap.ic_user_account, R.mipmap.ic_mail, R.mipmap.ic_people,
-                R.mipmap.ic_offer, R.mipmap.ic_settings_2, R.mipmap.ic_logout)
-        );
+        TileMenuFragment tileMenu = TileMenuFragment.newInstance(defaultConfig);
+        manager.beginTransaction()
+                .replace(R.id.fragments, tileMenu)
+                .commit();
     }
 
     private void configureNavDrawerHeader() {

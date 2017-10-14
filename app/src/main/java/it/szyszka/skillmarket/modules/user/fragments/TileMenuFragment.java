@@ -1,18 +1,20 @@
 package it.szyszka.skillmarket.modules.user.fragments;
 
 import android.os.Bundle;
+import android.service.quicksettings.Tile;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 
 import it.szyszka.skillmarket.R;
+import it.szyszka.skillmarket.modules.user.fragments.configuration.TileMenuConfig;
 import it.szyszka.skillmarket.modules.user.listeners.ParcelableClickListener;
 import it.szyszka.skillmarket.modules.user.views.TileView;
 
@@ -21,21 +23,16 @@ import it.szyszka.skillmarket.modules.user.views.TileView;
  */
 public class TileMenuFragment extends Fragment {
 
-    public static final String ICONS_EXTRAS = "icons";
-    public static final String LABELS_EXTRAS = "labels";
-    public static final String LISTENERS_EXTRAS = "listeners";
+    public static final String CONFIG_EXTRAS = "config";
+    private static final String TAG = TileMenuFragment.class.getSimpleName();
 
-    private ArrayList<Integer> icons;
-    private ArrayList<String> labels;
-    private ArrayList<ParcelableClickListener> listeners;
+    private TileMenuConfig config;
 
-    public static TileMenuFragment newInstance(ArrayList<Integer> icons, ArrayList<String> labels, ArrayList<ParcelableClickListener> listeners) {
+    public static TileMenuFragment newInstance(TileMenuConfig config) {
         TileMenuFragment menuFragment = new TileMenuFragment();
 
         Bundle extras = new Bundle();
-        extras.putIntegerArrayList(ICONS_EXTRAS, icons);
-        extras.putStringArrayList(LABELS_EXTRAS, labels);
-        extras.putParcelableArrayList(LISTENERS_EXTRAS, listeners);
+        extras.putParcelable(CONFIG_EXTRAS, config);
 
         menuFragment.setArguments(extras);
         return menuFragment;
@@ -47,16 +44,20 @@ public class TileMenuFragment extends Fragment {
         View menu = inflater.inflate(R.layout.user_actions_fragment, container, false);
 
         ViewHandle handle = new ViewHandle(
-                menu.findViewById(R.id.upper_left_tile),
-                menu.findViewById(R.id.upper_right_tile),
-                menu.findViewById(R.id.center_left_tile),
-                menu.findViewById(R.id.center_right_tile),
-                menu.findViewById(R.id.bottom_left_tile),
-                menu.findViewById(R.id.bottom_right_tile)
+                getViewsByIds(menu)
         );
 
         initTiles(handle);
         return menu;
+    }
+
+    @NonNull
+    private ArrayList<View> getViewsByIds(View menu) {
+        ArrayList<View> tiles = new ArrayList<>();
+        for (Integer tileId : config.getTileIds()) {
+            tiles.add(menu.findViewById(tileId));
+        }
+        return tiles;
     }
 
     private void initTiles(ViewHandle handle) {
@@ -72,38 +73,25 @@ public class TileMenuFragment extends Fragment {
     }
 
     private void handleArguments(Bundle arguments) {
-        icons = arguments.getIntegerArrayList(ICONS_EXTRAS);
-        labels = arguments.getStringArrayList(LABELS_EXTRAS);
-        listeners = arguments.getParcelableArrayList(LISTENERS_EXTRAS);
+        Log.i(TAG, "Handling arguments");
+        config = arguments.getParcelable(CONFIG_EXTRAS);
     }
 
     private class ViewHandle {
-        TileView upperLeft;
-        TileView upperRight;
-        TileView centerLeft;
-        TileView centerRight;
-        TileView bottomLeft;
-        TileView bottomRight;
+        ArrayList<TileView> tiles;
 
-        public ViewHandle(View upperLeft, View upperRight, View centerLeft,
-                          View centerRight, View bottomLeft, View bottomRight) {
-            this.upperLeft = new TileView(upperLeft);
-            this.upperRight = new TileView(upperRight);
-            this.centerLeft = new TileView(centerLeft);
-            this.centerRight = new TileView(centerRight);
-            this.bottomLeft = new TileView(bottomLeft);
-            this.bottomRight = new TileView(bottomRight);
-        }
-
-        List<TileView> toList() {
-            return Arrays.asList(upperLeft, upperRight, centerLeft, centerRight, bottomLeft, bottomRight);
+        ViewHandle(ArrayList<View> tileViews) {
+            tiles = new ArrayList<>();
+            for (View tileView : tileViews ) {
+                tiles.add(new TileView(tileView));
+            }
         }
 
         void setIconsLabelsAndListeners() {
-            Iterator<Integer> iconIterator = icons.iterator();
-            Iterator<String> labelIterator = labels.iterator();
-            Iterator<ParcelableClickListener> listenerIterator = listeners.iterator();
-            for(TileView tile : toList()) {
+            Iterator<Integer> iconIterator = config.getIconIds().iterator();
+            Iterator<String> labelIterator = config.getLabelIds().iterator();
+            Iterator<ParcelableClickListener> listenerIterator = config.getListeners().iterator();
+            for(TileView tile : tiles) {
                 tile.replaceIconImageWith(
                         iconIterator.hasNext() ? iconIterator.next() : R.drawable.ic_default_category
                 );

@@ -3,9 +3,10 @@ package it.szyszka.skillmarket.modules.user.tasks;
 import android.content.Intent;
 import android.util.Log;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.io.IOException;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.modules.user.activities.SignInActivity;
 import it.szyszka.skillmarket.modules.user.activities.UserProfileActivity;
@@ -21,7 +22,7 @@ import retrofit2.Response;
 public class SignInUserTask extends MyAsyncTask<User, Void, User> {
 
     private static final String TAG = SignInUserTask.class.getSimpleName();
-    private SweetAlertDialog alertDialog;
+    private MaterialDialog alertDialog;
     private SignInActivity context;
 
     public SignInUserTask(SignInActivity context) {
@@ -31,11 +32,11 @@ public class SignInUserTask extends MyAsyncTask<User, Void, User> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        alertDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
-        alertDialog.setTitleText(context.getString(R.string.info_message_wait));
-        alertDialog.setContentText(context.getString(R.string.info_message_signing_in));
-        alertDialog.setCancelable(true);
-        alertDialog.show();
+        alertDialog = new MaterialDialog.Builder(context)
+                .title(context.getString(R.string.info_message_wait))
+                .content(context.getString(R.string.info_message_signing_in))
+                .progress(true, 0)
+                .show();
     }
 
     @Override
@@ -58,11 +59,11 @@ public class SignInUserTask extends MyAsyncTask<User, Void, User> {
 
     @Override
     public void onNoServerResponse() {
-        alertDialog = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
-        alertDialog.setTitleText(context.getString(R.string.error_message_failure));
-        alertDialog.setContentText(context.getString(R.string.error_message_no_internet));
-        alertDialog.setCancelable(true);
-        alertDialog.show();
+        alertDialog = new MaterialDialog.Builder(context)
+                .title(context.getString(R.string.error_message_failure))
+                .content(context.getString(R.string.error_message_no_internet))
+                .positiveText("OK")
+                .show();
     }
 
     @Override
@@ -76,10 +77,10 @@ public class SignInUserTask extends MyAsyncTask<User, Void, User> {
     @Override
     public void handleOnFailure(String errorMessage) {
         Log.e(TAG, errorMessage);
-        alertDialog = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
-        alertDialog.setTitleText(context.getString(R.string.error_message_failure));
-        alertDialog.setContentText(context.getString(R.string.error_message_invalid_credentials));
-        alertDialog.setCancelable(true);
-        alertDialog.show();
+        alertDialog = new MaterialDialog.Builder(context)
+                .title(context.getString(R.string.error_message_failure))
+                .content(context.getString(R.string.error_message_invalid_credentials))
+                .positiveText("OK")
+                .show();
     }
 }

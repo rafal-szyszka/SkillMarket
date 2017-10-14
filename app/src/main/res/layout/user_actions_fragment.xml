@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/upper_left_tile"
+            android:id="@+id/tile_1"
             layout="@layout/action_tile"
             android:layout_width="@dimen/tile_size"
             android:layout_height="@dimen/tile_size"
@@ -18,7 +18,7 @@
             android:layout_alignParentTop="true" />
 
         <include
-            android:id="@+id/upper_right_tile"
+            android:id="@+id/tile_2"
             layout="@layout/action_tile"
             android:layout_width="@dimen/tile_size"
             android:layout_height="@dimen/tile_size"
@@ -26,39 +26,39 @@
             android:layout_alignParentTop="true" />
 
         <include
-            android:id="@+id/center_left_tile"
+            android:id="@+id/tile_3"
             layout="@layout/action_tile"
             android:layout_width="@dimen/tile_size"
             android:layout_height="@dimen/tile_size"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/upper_left_tile"
+            android:layout_below="@id/tile_1"
             android:layout_marginTop="@dimen/large_margin"/>
 
         <include
-            android:id="@+id/center_right_tile"
+            android:id="@+id/tile_4"
             layout="@layout/action_tile"
             android:layout_width="@dimen/tile_size"
             android:layout_height="@dimen/tile_size"
             android:layout_alignParentEnd="true"
-            android:layout_below="@id/upper_right_tile"
+            android:layout_below="@id/tile_2"
             android:layout_marginTop="@dimen/large_margin" />
 
         <include
-            android:id="@+id/bottom_left_tile"
+            android:id="@+id/tile_5"
             layout="@layout/action_tile"
             android:layout_width="@dimen/tile_size"
             android:layout_height="@dimen/tile_size"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/center_left_tile"
+            android:layout_below="@id/tile_3"
             android:layout_marginTop="@dimen/large_margin" />
 
         <include
-            android:id="@+id/bottom_right_tile"
+            android:id="@+id/tile_6"
             layout="@layout/action_tile"
             android:layout_width="@dimen/tile_size"
             android:layout_height="@dimen/tile_size"
             android:layout_alignParentEnd="true"
-            android:layout_below="@id/center_right_tile"
+            android:layout_below="@id/tile_4"
             android:layout_marginTop="@dimen/large_margin" />
 
     </RelativeLayout>

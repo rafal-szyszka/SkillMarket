@@ -2,6 +2,8 @@ package it.szyszka.skillmarket.modules.user.listeners;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 import lombok.NoArgsConstructor;
 
@@ -22,6 +24,12 @@ public class DefaultParcelableClickListener extends ParcelableClickListener {
             return new DefaultParcelableClickListener[i];
         }
     };
+
+    public DefaultParcelableClickListener(Fragment fragment, FragmentManager manager, Integer containerId) {
+        setFragment(fragment);
+        setManager(manager);
+        setContainerId(containerId);
+    }
 
     private DefaultParcelableClickListener(Parcel parcel) {super(parcel);}
 

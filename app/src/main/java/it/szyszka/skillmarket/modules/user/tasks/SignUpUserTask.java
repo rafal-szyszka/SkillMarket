@@ -4,9 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.io.IOException;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.modules.user.activities.SignInActivity;
 import it.szyszka.skillmarket.modules.user.activities.SignInActivity_;
@@ -24,7 +25,7 @@ public class SignUpUserTask extends MyAsyncTask<UserResponse, Void, UserResponse
 
     private static final String TAG = SignUpUserTask.class.getSimpleName();
     private Context context;
-    private SweetAlertDialog alertDialog;
+    private MaterialDialog alertDialog;
 
     public SignUpUserTask(Context context) {
         this.context = context;
@@ -33,11 +34,11 @@ public class SignUpUserTask extends MyAsyncTask<UserResponse, Void, UserResponse
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        alertDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
-        alertDialog.setTitleText(context.getString(R.string.info_message_wait));
-        alertDialog.setContentText(context.getString(R.string.info_message_signing_up));
-        alertDialog.setCancelable(true);
-        alertDialog.show();
+        alertDialog = new MaterialDialog.Builder(context)
+                .title(context.getString(R.string.info_message_wait))
+                .content(context.getString(R.string.info_message_signing_up))
+                .progress(true, 0)
+                .show();
     }
 
     @Override
@@ -53,7 +54,7 @@ public class SignUpUserTask extends MyAsyncTask<UserResponse, Void, UserResponse
     @Override
     protected void onPostExecute(Response<UserResponse> response) {
         super.onPostExecute(response);
-        alertDialog.cancel();
+        alertDialog.dismiss();
         handleResponse(response);
     }
 

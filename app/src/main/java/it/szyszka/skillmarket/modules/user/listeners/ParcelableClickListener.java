@@ -13,11 +13,24 @@ import lombok.Setter;
  * Created by rafal on 12.10.17.
  */
 
-public abstract class ParcelableClickListener implements View.OnClickListener, Parcelable {
+public class ParcelableClickListener implements View.OnClickListener, Parcelable {
 
     @Getter @Setter private Fragment fragment;
     @Setter private FragmentManager manager;
     @Setter private int containerId;
+
+    public static final Creator<ParcelableClickListener> CREATOR = new Creator<ParcelableClickListener>() {
+
+        @Override
+        public ParcelableClickListener createFromParcel(Parcel parcel) {
+            return new ParcelableClickListener(parcel);
+        }
+
+        @Override
+        public ParcelableClickListener[] newArray(int i) {
+            return new ParcelableClickListener[i];
+        }
+    };
 
     public ParcelableClickListener() {}
 

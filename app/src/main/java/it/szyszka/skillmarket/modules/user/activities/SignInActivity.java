@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -14,7 +16,6 @@ import org.androidannotations.annotations.res.ColorRes;
 
 import java.util.Properties;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.api.APIConfig;
 import it.szyszka.skillmarket.modules.security.HashGenerator;
@@ -49,9 +50,6 @@ public class SignInActivity extends AppCompatActivity {
 
     @ColorRes(R.color.colorErrorRed)
     int errorRed;
-
-    @ColorRes(R.color.text_color)
-    int textColor;
 
     @AfterViews
     public void initView(){
@@ -101,17 +99,17 @@ public class SignInActivity extends AppCompatActivity {
     private void showMessageFromExtra(Bundle extras) {
         if(extras != null) {
             if(extras.getBoolean(STATUS_KEY, false)) {
-                SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
-                dialog.setCancelable(true);
-                dialog.setTitleText(getString(R.string.success_message));
-                dialog.setContentText(extras.getString(MESSAGE_KEY));
-                dialog.show();
+                new MaterialDialog.Builder(this)
+                        .title(getString(R.string.success_message))
+                        .content(extras.getString(MESSAGE_KEY))
+                        .positiveText("OK")
+                        .show();
             } else {
-                SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE);
-                dialog.setCancelable(true);
-                dialog.setTitleText(getString(R.string.error_message_failure));
-                dialog.setContentText(extras.getString(MESSAGE_KEY));
-                dialog.show();
+                new MaterialDialog.Builder(this)
+                        .title(getString(R.string.error_message_failure))
+                        .content(extras.getString(MESSAGE_KEY))
+                        .positiveText("OK")
+                        .show();
             }
         }
     }
