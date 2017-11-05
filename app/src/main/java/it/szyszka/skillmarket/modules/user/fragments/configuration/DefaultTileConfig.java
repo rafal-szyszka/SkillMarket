@@ -3,12 +3,14 @@ package it.szyszka.skillmarket.modules.user.fragments.configuration;
 import android.content.Context;
 import android.os.Parcel;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.modules.user.listeners.ParcelableClickListener;
+import it.szyszka.skillmarket.modules.user.model.User;
 
 /**
  * Created by rafal on 14.10.17.
@@ -21,13 +23,14 @@ public class DefaultTileConfig implements TileMenuConfig {
     private ArrayList<Integer> iconIds;
     private ArrayList<String> labelIds;
     private ArrayList<ParcelableClickListener> listeners;
+    private User signedInUser;
 
     private DefaultTileListeners defaultTileListeners;
 
     public static final Creator<DefaultTileConfig> CREATOR = new Creator<DefaultTileConfig>() {
         @Override
         public DefaultTileConfig createFromParcel(Parcel parcel) {
-            return new DefaultTileConfig(parcel);
+            return new DefaultTileConfigBuilder().setParcel(parcel).build();
         }
 
         @Override
@@ -36,7 +39,8 @@ public class DefaultTileConfig implements TileMenuConfig {
         }
     };
 
-    public DefaultTileConfig(Context context, Integer containerId, FragmentManager fragmentManager) {
+    public DefaultTileConfig(Context context, Integer containerId, FragmentManager fragmentManager, User signedInUser) {
+        this.signedInUser = signedInUser;
         defaultTileListeners = new DefaultTileListeners(containerId, fragmentManager, context);
         tileIds = getDefaultTileIds();
         iconIds = getDefaultIconIds();
@@ -45,13 +49,14 @@ public class DefaultTileConfig implements TileMenuConfig {
     }
 
     private ArrayList<ParcelableClickListener> getDefaultListeners(DefaultTileListeners defaultTileListeners) {
+        Log.i(TAG, signedInUser.getFullName());
         return new ArrayList<>(Arrays.asList(
-                defaultTileListeners.instantiateClickListener(DefaultTileListeners.ACCOUNT),
-                defaultTileListeners.instantiateClickListener(DefaultTileListeners.MAILS),
-                defaultTileListeners.instantiateClickListener(DefaultTileListeners.PEOPLE),
-                defaultTileListeners.instantiateClickListener(DefaultTileListeners.ANNOUNCEMENTS),
-                defaultTileListeners.instantiateClickListener(DefaultTileListeners.SETTINGS),
-                defaultTileListeners.instantiateClickListener(DefaultTileListeners.LOGOUT)
+                defaultTileListeners.instantiateClickListener(DefaultTileListeners.ACCOUNT, signedInUser),
+                defaultTileListeners.instantiateClickListener(DefaultTileListeners.MAILS, null),
+                defaultTileListeners.instantiateClickListener(DefaultTileListeners.PEOPLE, null),
+                defaultTileListeners.instantiateClickListener(DefaultTileListeners.ANNOUNCEMENTS, null),
+                defaultTileListeners.instantiateClickListener(DefaultTileListeners.SETTINGS, null),
+                defaultTileListeners.instantiateClickListener(DefaultTileListeners.LOGOUT, null)
         ));
     }
 
@@ -132,4 +137,6 @@ public class DefaultTileConfig implements TileMenuConfig {
         }
         return arrayList;
     }
+
+
 }

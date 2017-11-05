@@ -7,8 +7,8 @@ import org.androidannotations.annotations.EFragment;
 import it.szyszka.skillmarket.R;
 
 /**
- * Created by rafal on 13.10.17.
+ * Created by rafal on 05.11.17.
  */
-@EFragment(R.layout.user_mail_fragment)
-public class MailsTile extends Fragment {
+@EFragment(R.layout.user_about_fragment)
+public class AboutFragment extends Fragment{
 }

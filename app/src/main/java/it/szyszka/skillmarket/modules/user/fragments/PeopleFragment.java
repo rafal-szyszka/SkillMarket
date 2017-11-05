@@ -10,5 +10,5 @@ import it.szyszka.skillmarket.R;
  * Created by rafal on 13.10.17.
  */
 @EFragment(R.layout.user_people_fragment)
-public class PeopleTile extends Fragment {
+public class PeopleFragment extends Fragment {
 }

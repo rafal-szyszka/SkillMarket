@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparentWhite"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_record_icon"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_weight="1"
+        android:padding="@dimen/extra_small_padding"
+        android:src="@mipmap/ic_app_logo_2" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/icon_size"
+        android:layout_weight="10"
+        android:orientation="vertical"
+        android:padding="@dimen/extra_small_padding">
+
+        <TextView
+            android:id="@+id/user_record_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="Jarosław Ciołek-Żelechowski"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="@dimen/large_font" />
+
+        <TextView
+            android:id="@+id/user_record_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="jarosław.ciołek.żelechowski@gmail.com" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/user_record_send_message"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_weight="1"
+        android:padding="@dimen/extra_small_padding"
+        app:srcCompat="@mipmap/ic_mail" />
+
+</LinearLayout>

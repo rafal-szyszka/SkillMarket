@@ -3,6 +3,8 @@ package it.szyszka.skillmarket.modules.user.tasks;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -15,8 +17,11 @@ import retrofit2.Response;
 public abstract class MyAsyncTask<Params, Progress, Result> extends AsyncTask<Call<Params>, Progress, Response<Result>> {
 
     private static final String TAG = MyAsyncTask.class.getSimpleName();
+    protected String onNoResponseAlertTitle;
+    protected String onNoResponseAlertContent;
+    protected MaterialDialog alertDialog;
 
-    protected void onServerResponse(Response<Params> response) {
+    protected void onServerResponse(Response<Result> response) {
         if(response.isSuccessful()) {
             onSuccess(response);
         } else {
@@ -24,7 +29,7 @@ public abstract class MyAsyncTask<Params, Progress, Result> extends AsyncTask<Ca
         }
     }
 
-    protected void onFailure(Response<Params> response) {
+    protected void onFailure(Response<Result> response) {
         String errorMessage = null;
         try {
             errorMessage = response.errorBody().string();
@@ -36,7 +41,7 @@ public abstract class MyAsyncTask<Params, Progress, Result> extends AsyncTask<Ca
         }
     }
 
-    protected void handleResponse(Response<Params> response) {
+    protected void handleResponse(Response<Result> response) {
         if(response != null) {
             onServerResponse(response);
         } else {
@@ -49,6 +54,17 @@ public abstract class MyAsyncTask<Params, Progress, Result> extends AsyncTask<Ca
 
     protected abstract void onNoServerResponse();
 
-    protected abstract void onSuccess(Response<Params> response);
+    protected abstract void onSuccess(Response<Result> response);
 
+    public void setAlertDialog(MaterialDialog alertDialog) {
+        this.alertDialog = alertDialog;
+    }
+
+    public void setOnNoResponseAlertTitle(String onNoResponseAlertTitle) {
+        this.onNoResponseAlertTitle = onNoResponseAlertTitle;
+    }
+
+    public void setOnNoResponseAlertContent(String onNoResponseAlertContent) {
+        this.onNoResponseAlertContent = onNoResponseAlertContent;
+    }
 }

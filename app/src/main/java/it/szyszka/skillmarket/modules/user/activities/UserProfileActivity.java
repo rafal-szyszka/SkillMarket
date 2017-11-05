@@ -22,6 +22,7 @@ import org.androidannotations.annotations.ViewById;
 import it.szyszka.skillmarket.R;
 import it.szyszka.skillmarket.modules.user.fragments.TileMenuFragment;
 import it.szyszka.skillmarket.modules.user.fragments.configuration.DefaultTileConfig;
+import it.szyszka.skillmarket.modules.user.fragments.configuration.DefaultTileConfigBuilder;
 import it.szyszka.skillmarket.modules.user.listeners.UserNavigationMenuListener;
 import it.szyszka.skillmarket.modules.user.model.User;
 
@@ -63,11 +64,12 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private void initHelloFragment() {
         FragmentManager manager = getSupportFragmentManager();
-        DefaultTileConfig defaultConfig = new DefaultTileConfig(
-                getApplicationContext(),
-                R.id.fragments,
-                manager
-        );
+        DefaultTileConfig defaultConfig = new DefaultTileConfigBuilder()
+                .setContainerId(R.id.fragments)
+                .setContext(getApplicationContext())
+                .setFragmentManager(manager)
+                .setSignedInUser(signedUser)
+                .build();
 
         TileMenuFragment tileMenu = TileMenuFragment.newInstance(defaultConfig);
         manager.beginTransaction()

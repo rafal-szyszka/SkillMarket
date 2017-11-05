@@ -76,6 +76,14 @@
         <item>Logout</item>
     </string-array>
 
+    <!-- User account page titles -->
+    <string-array name="page_titles">
+        <item>About</item>
+        <item>Friends and Trusted</item>
+        <item>Announcements</item>
+    </string-array>
+
+
     <!-- Miscellaneous -->
     <string name="button_text_continue">Continue</string>
 

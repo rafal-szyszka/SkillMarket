@@ -8,12 +8,14 @@ import android.view.View;
 import it.szyszka.skillmarket.modules.announcements.fragments.OffersTile_;
 import it.szyszka.skillmarket.modules.application.fragments.AppSettingsFragment_;
 import it.szyszka.skillmarket.modules.user.activities.SignInActivity_;
-import it.szyszka.skillmarket.modules.user.fragments.MailsTile_;
-import it.szyszka.skillmarket.modules.user.fragments.PeopleTile_;
-import it.szyszka.skillmarket.modules.user.fragments.UserAccountTile_;
+import it.szyszka.skillmarket.modules.user.fragments.MailsFragment_;
+import it.szyszka.skillmarket.modules.user.fragments.PeopleFragment_;
+import it.szyszka.skillmarket.modules.user.fragments.UserAccountFragment;
+import it.szyszka.skillmarket.modules.user.fragments.UserAccountFragment_;
 import it.szyszka.skillmarket.modules.user.listeners.DefaultParcelableClickListener;
 import it.szyszka.skillmarket.modules.user.listeners.ParcelableClickListener;
 import it.szyszka.skillmarket.modules.user.model.Credentials;
+import it.szyszka.skillmarket.modules.user.model.User;
 
 /**
  * Created by rafal on 14.10.17.
@@ -38,25 +40,25 @@ public class DefaultTileListeners {
         this.context = context;
     }
 
-    public ParcelableClickListener instantiateClickListener(Integer tileNumber) {
+    public ParcelableClickListener instantiateClickListener(Integer tileNumber, User displayedUser) {
         switch (tileNumber) {
             case ACCOUNT: {
                 return new DefaultParcelableClickListener(
-                        new UserAccountTile_(),
+                        UserAccountFragment.newInstance(displayedUser),
                         fragmentManager,
                         containerId
                 );
             }
             case MAILS: {
                 return new DefaultParcelableClickListener(
-                        new MailsTile_(),
+                        new MailsFragment_(),
                         fragmentManager,
                         containerId
                 );
             }
             case PEOPLE: {
                 return new DefaultParcelableClickListener(
-                        new PeopleTile_(),
+                        new PeopleFragment_(),
                         fragmentManager,
                         containerId
                 );

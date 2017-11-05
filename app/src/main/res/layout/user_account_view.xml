@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/user_profile_appbar"
+        android:id="@+id/user_account_appbar"
         android:layout_width="match_parent"
         android:layout_height="320dp"
         android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/user_profile_collapsing"
+            android:id="@+id/user_account_collapsing"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
@@ -22,6 +22,7 @@
                 android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/user_account_image"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:layout_gravity="center_horizontal"
@@ -38,17 +39,17 @@
                     android:padding="10dp">
 
                     <TextView
+                        android:id="@+id/user_account_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="Rafał Szyszka"
                         android:textAlignment="center"
                         android:textColor="@android:color/background_light"
                         android:textSize="30sp" />
 
                     <include
-                        android:id="@+id/user_profile_rating"
-                        layout="@layout/mod_a_user_rating"
+                        android:id="@+id/user_account_rating"
+                        layout="@layout/user_rating_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -60,26 +61,26 @@
                         android:orientation="horizontal">
 
                         <include
-                            android:id="@+id/user_profile_email"
-                            layout="@layout/mod_a_user_info_small"
+                            android:id="@+id/user_account_email"
+                            layout="@layout/user_basic_info_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginBottom="5dp" />
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1" />
 
                         <include
-                            android:id="@+id/user_profile_phone"
-                            layout="@layout/mod_a_user_info_small"
+                            android:id="@+id/user_account_phone"
+                            layout="@layout/user_basic_info_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginBottom="5dp" />
+                            android:layout_marginBottom="5dp"
+                            android:layout_weight="1" />
 
                     </LinearLayout>
 
                     <include
-                        android:id="@+id/user_profile_location"
-                        layout="@layout/mod_a_user_info_small"
+                        android:id="@+id/user_account_location"
+                        layout="@layout/user_basic_info_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp" />
@@ -89,56 +90,50 @@
             </LinearLayout>
 
             <android.support.design.widget.TabLayout
-                android:id="@+id/user_profile_tabs"
+                android:id="@+id/user_account_tabs"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="bottom"
-                app:tabTextColor="@android:color/background_light">
-
-                <android.support.design.widget.TabItem android:text="O Mnie" />
-
-                <android.support.design.widget.TabItem android:text="Moje opinie" />
-
-                <android.support.design.widget.TabItem android:text="Moje ogłoszenia" />
-
-            </android.support.design.widget.TabLayout>
+                app:tabTextColor="@android:color/background_light" />
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
-            </android.support.v7.widget.Toolbar>
-            
+                android:layout_height="?attr/actionBarSize" />
+
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/user_account_nested_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/user_profile_offers"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/user_account_view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+</android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_margin="24dp"
-        android:src="@drawable/ic_invite"
-        app:fabSize="normal"
-        app:layout_anchor="@id/user_profile_offers"
-        app:layout_anchorGravity="bottom|end" />
+<android.support.design.widget.FloatingActionButton
+android:id="@+id/user_account_invite"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_margin="24dp"
+android:src="@drawable/ic_invite"
+app:fabSize="normal"
+app:layout_anchor="@id/user_account_view_pager"
+app:layout_anchorGravity="bottom|end" />
 
-</android.support.design.widget.CoordinatorLayout>
+    </android.support.design.widget.CoordinatorLayout>

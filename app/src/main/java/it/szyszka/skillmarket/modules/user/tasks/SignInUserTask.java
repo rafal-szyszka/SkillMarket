@@ -22,7 +22,6 @@ import retrofit2.Response;
 public class SignInUserTask extends MyAsyncTask<User, Void, User> {
 
     private static final String TAG = SignInUserTask.class.getSimpleName();
-    private MaterialDialog alertDialog;
     private SignInActivity context;
 
     public SignInUserTask(SignInActivity context) {
