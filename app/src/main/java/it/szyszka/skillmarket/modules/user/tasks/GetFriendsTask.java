@@ -1,15 +1,12 @@
 package it.szyszka.skillmarket.modules.user.tasks;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.afollestad.materialdialogs.MaterialDialog;
-
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
-import it.szyszka.skillmarket.R;
-import it.szyszka.skillmarket.modules.user.fragments.FriendsFragment;
+import it.szyszka.skillmarket.modules.user.adapters.FriendsAdapter;
 import it.szyszka.skillmarket.modules.user.model.User;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -18,19 +15,19 @@ import retrofit2.Response;
  * Created by rafal on 26.10.17.
  */
 
-public class GetFriendsTask extends MyAsyncTask<ArrayList<User>, Void, ArrayList<User>> {
+public class GetFriendsTask extends MyAsyncTask<List<User>, Void, List<User>> {
 
     public static final String TAG = GetFriendsTask.class.getSimpleName();
 
-    private FriendsFragment friendsFragment;
+    private RecyclerView recyclerView;
 
-    public GetFriendsTask(FriendsFragment friendsFragment) {
-        this.friendsFragment = friendsFragment;
+    public GetFriendsTask(RecyclerView recyclerView) {
+        this.recyclerView = recyclerView;
     }
 
     @Override
     protected void handleOnFailure(String errorMessage) {
-
+        Log.i(TAG, errorMessage);
     }
 
     @Override
@@ -41,17 +38,27 @@ public class GetFriendsTask extends MyAsyncTask<ArrayList<User>, Void, ArrayList
     }
 
     @Override
-    protected void onSuccess(Response<ArrayList<User>> response) {
-
+    protected void onSuccess(Response<List<User>> response) {
+        Log.i(TAG, "onSuccess");
+        if(response.body() != null) {
+            recyclerView.setAdapter(new FriendsAdapter(response.body()));
+        }
     }
 
     @Override
-    protected Response<ArrayList<User>> doInBackground(Call<ArrayList<User>>[] calls) {
+    protected Response<List<User>> doInBackground(Call<List<User>>[] calls) {
         try {
+            Log.i(TAG, "doInBackground");
             return calls[0].execute();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Response<List<User>> listResponse) {
+        super.onPostExecute(listResponse);
+        handleResponse(listResponse);
     }
 }

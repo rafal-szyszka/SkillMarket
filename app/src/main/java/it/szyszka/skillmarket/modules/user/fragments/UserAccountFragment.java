@@ -5,10 +5,10 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +17,16 @@ import android.widget.TextView;
 
 import org.androidannotations.annotations.EFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.szyszka.skillmarket.R;
+import it.szyszka.skillmarket.api.APIConfig;
+import it.szyszka.skillmarket.modules.user.adapters.FriendsAdapter;
+import it.szyszka.skillmarket.modules.user.model.Credentials;
 import it.szyszka.skillmarket.modules.user.model.User;
+import it.szyszka.skillmarket.modules.user.tasks.GetFriendsTask;
 import it.szyszka.skillmarket.modules.user.views.BasicInfo;
 import it.szyszka.skillmarket.modules.user.views.Rating;
 
@@ -33,6 +40,7 @@ public class UserAccountFragment extends Fragment {
     public static final String DISPLAYED_USER = "displayed_user";
 
     private User displayedUser;
+    private List<User> userFriends;
 
     public static UserAccountFragment newInstance(User user) {
         UserAccountFragment fragment = new UserAccountFragment();
@@ -50,7 +58,6 @@ public class UserAccountFragment extends Fragment {
         if(argumentsExists()) {
             handleArguments();
         }
-
     }
 
     private void handleArguments() {
@@ -66,6 +73,7 @@ public class UserAccountFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView");
         View parent = inflater.inflate(R.layout.user_account_fragment, container, false);
 
         ViewHolder holder = new ViewHolder(parent.findViewById(R.id.user_account_view));
@@ -75,16 +83,31 @@ public class UserAccountFragment extends Fragment {
         holder.childFab.setVisibility(View.INVISIBLE);
 
         fillUserData(holder);
-        setupViewPager(holder.pager, holder.tabs);
+
+        setupRecyclerView(holder.recycler);
 
         return parent;
     }
 
-    private void setupViewPager(ViewPager pager, TabLayout tabs) {
-        PagerAdapter adapter = new PagerAdapter(getFragmentManager());
-        pager.setAdapter(adapter);
+    public void downloadAndFillFriends(RecyclerView recyclerView) {
+        Log.i(TAG, "onActivityCreated");
+        GetFriendsTask getFriendsTask = new GetFriendsTask(recyclerView);
+        getFriendsTask.execute(
+                APIConfig.getInstance().createUserApiClient()
+                        .getFriends(
+                                Credentials.getInstance().getBasicAuth(),
+                                displayedUser.getEmail()
+                        )
+        );
+    }
 
-        tabs.setupWithViewPager(pager);
+    private void setupRecyclerView(RecyclerView recyclerView) {
+        Log.i(TAG, "setupRecyclerView");
+        userFriends = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setNestedScrollingEnabled(false);
+        downloadAndFillFriends(recyclerView);
     }
 
     private void fillUserData(ViewHolder holder) {
@@ -93,7 +116,6 @@ public class UserAccountFragment extends Fragment {
         holder.setPhoneView(displayedUser.getPhoneNumber());
         holder.setLocationView(displayedUser.getCity());
     }
-
 
     private class ViewHolder {
         FloatingActionButton childFab;
@@ -104,7 +126,7 @@ public class UserAccountFragment extends Fragment {
         BasicInfo email;
         BasicInfo phone;
         BasicInfo location;
-        ViewPager pager;
+        RecyclerView recycler;
         TabLayout tabs;
 
         ViewHolder(View parent) {
@@ -115,7 +137,7 @@ public class UserAccountFragment extends Fragment {
             email = new BasicInfo(parent.findViewById(R.id.user_account_email));
             phone = new BasicInfo(parent.findViewById(R.id.user_account_phone));
             location = new BasicInfo(parent.findViewById(R.id.user_account_location));
-            pager = parent.findViewById(R.id.user_account_view_pager);
+            recycler = parent.findViewById(R.id.user_account_recycler_view);
             tabs = parent.findViewById(R.id.user_account_tabs);
         }
 
@@ -131,47 +153,6 @@ public class UserAccountFragment extends Fragment {
         void setLocationView(String city) {
             location.setIcon(R.drawable.ic_location);
             location.setText(city);
-        }
-    }
-
-    private class PagerAdapter extends FragmentPagerAdapter {
-
-        String[] pageTitles = getResources().getStringArray(R.array.page_titles);
-
-        public PagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            Log.i(TAG, "getItem" + position);
-            switch(position) {
-                case 0: {
-                    Log.i(TAG, "About fragment");
-                    return new AboutFragment();
-                }
-                case 1: {
-                    Log.i(TAG, "Friends fragment");
-                    return new FriendsFragment();
-                }
-                case 2: {
-                    Log.i(TAG, "Offers fragment");
-                    return new AboutFragment();
-                }
-                default:
-                    throw new IllegalStateException("No fragment on index " + position);
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return pageTitles.length;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            Log.i(TAG, "getPageTitle");
-            return pageTitles[position];
         }
     }
 

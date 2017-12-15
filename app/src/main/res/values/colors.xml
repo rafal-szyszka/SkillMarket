@@ -6,6 +6,7 @@
 
     <color name="colorLightGreen">#f1f8e9</color>
     <color name="colorDarkGray">#3F3F3F</color>
+    <color name="colorLightGray">#DCDCDC</color>
     <color name="colorErrorRed">#F44336</color>
     <color name="colorGreen">#00c853</color>
     <color name="transparentWhite">#75F1F2F1</color>

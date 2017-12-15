@@ -52,9 +52,9 @@ public class DefaultTileConfig implements TileMenuConfig {
         Log.i(TAG, signedInUser.getFullName());
         return new ArrayList<>(Arrays.asList(
                 defaultTileListeners.instantiateClickListener(DefaultTileListeners.ACCOUNT, signedInUser),
-                defaultTileListeners.instantiateClickListener(DefaultTileListeners.MAILS, null),
+                defaultTileListeners.instantiateClickListener(DefaultTileListeners.MAILS, signedInUser),
                 defaultTileListeners.instantiateClickListener(DefaultTileListeners.PEOPLE, null),
-                defaultTileListeners.instantiateClickListener(DefaultTileListeners.ANNOUNCEMENTS, null),
+                defaultTileListeners.instantiateClickListener(DefaultTileListeners.ANNOUNCEMENTS, signedInUser),
                 defaultTileListeners.instantiateClickListener(DefaultTileListeners.SETTINGS, null),
                 defaultTileListeners.instantiateClickListener(DefaultTileListeners.LOGOUT, null)
         ));

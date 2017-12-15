@@ -2,6 +2,8 @@ package it.szyszka.skillmarket.api;
 
 import java.util.Properties;
 
+import it.szyszka.skillmarket.modules.mails.api.MailService;
+import it.szyszka.skillmarket.modules.offers.api.AdvertService;
 import it.szyszka.skillmarket.modules.user.api.UserService;
 import it.szyszka.skillmarket.utils.PropertiesReader;
 import retrofit2.Retrofit;
@@ -37,6 +39,14 @@ public class APIConfig {
 
     public UserService createUserApiClient() {
         return retrofit.create(UserService.class);
+    }
+
+    public MailService createMailApiClient() {
+        return retrofit.create(MailService.class);
+    }
+
+    public AdvertService createAdvertApiClient() {
+        return retrofit.create(AdvertService.class);
     }
 
     private void applyConfiguration(Properties configuration) {

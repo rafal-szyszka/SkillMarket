@@ -28,6 +28,7 @@ public class User implements Parcelable {
             return new User[i];
         }
     };
+    @Getter @Setter private Long id;
     @Getter @Setter private String nickname;
     @Getter @Setter private String email;
     @Getter @Setter private String fullName;
@@ -43,6 +44,7 @@ public class User implements Parcelable {
     @Getter @Setter private Set<User> trusted;
 
     public User(Parcel parcel) {
+        id = parcel.readLong();
         nickname = parcel.readString();
         email = parcel.readString();
         fullName = parcel.readString();
@@ -62,6 +64,7 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
         parcel.writeString(nickname);
         parcel.writeString(email);
         parcel.writeString(fullName);

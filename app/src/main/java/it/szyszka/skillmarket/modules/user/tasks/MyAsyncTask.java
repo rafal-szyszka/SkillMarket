@@ -22,6 +22,7 @@ public abstract class MyAsyncTask<Params, Progress, Result> extends AsyncTask<Ca
     protected MaterialDialog alertDialog;
 
     protected void onServerResponse(Response<Result> response) {
+        Log.i(TAG, "onServerRespone");
         if(response.isSuccessful()) {
             onSuccess(response);
         } else {
@@ -30,6 +31,7 @@ public abstract class MyAsyncTask<Params, Progress, Result> extends AsyncTask<Ca
     }
 
     protected void onFailure(Response<Result> response) {
+        Log.i(TAG, "onFailure");
         String errorMessage = null;
         try {
             errorMessage = response.errorBody().string();

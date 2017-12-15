@@ -37,7 +37,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return 0;
+        return friends.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,5 +58,11 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
     public FriendsAdapter(List<User> friends) {
         this.friends = friends;
+    }
+
+    public void changeData(List<User> friends) {
+        this.friends.clear();
+        this.friends.addAll(friends);
+        notifyDataSetChanged();
     }
 }

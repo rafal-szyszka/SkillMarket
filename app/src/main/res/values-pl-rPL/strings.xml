@@ -74,4 +74,40 @@
     <!-- Etykiety klawiszy -->
     <string name="button_text_continue">Dalej</string>
 
+    <!-- Wiadomości -->
+    <string name="mails_outbox_title">Wysłane</string>
+    <string name="mails_inbox_title">Odebrane</string>
+    <string name="mails_message_title_text">Tytuł wiadomości</string>
+    <string name="mails_message_content_text">Treść wiadomości</string>
+
+    <!-- Oferty -->
+    <string-array name="offer_categories">
+        <item>Catering</item>
+        <item>Dekoracja wnętrz</item>
+        <item>Fotografia</item>
+        <item>Grafka i Reklama</item>
+        <item>IT</item>
+
+        <item>Komputery, elektronika i serwis</item>
+        <item>Mechanika samochodowa</item>
+        <item>Moda</item>
+        <item>Muzyka</item>
+        <item>Ogrodnictwo</item>
+
+        <item>Opieka i agencje niań</item>
+        <item>Przeprowadzki i transport</item>
+        <item>Remont</item>
+        <item>Siłownia i fitness</item>
+        <item>Sprzątanie</item>
+
+        <item>Szkoła</item>
+        <item>Tłumaczenie i redakcja tekstu</item>
+        <item>Usługi finansowe</item>
+        <item>Usługi prawnicze</item>
+        <item>Zdrowie</item>
+
+        <item>Inne</item>
+    </string-array>
+
+
 </resources>

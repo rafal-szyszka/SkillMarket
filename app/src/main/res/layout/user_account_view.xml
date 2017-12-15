@@ -116,11 +116,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/user_account_view_pager"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/user_account_recycler_view"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -133,7 +133,7 @@ android:layout_height="wrap_content"
 android:layout_margin="24dp"
 android:src="@drawable/ic_invite"
 app:fabSize="normal"
-app:layout_anchor="@id/user_account_view_pager"
+app:layout_anchor="@id/user_account_recycler_view"
 app:layout_anchorGravity="bottom|end" />
 
     </android.support.design.widget.CoordinatorLayout>

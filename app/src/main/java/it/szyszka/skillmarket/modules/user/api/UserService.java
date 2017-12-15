@@ -1,6 +1,6 @@
 package it.szyszka.skillmarket.modules.user.api;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import it.szyszka.skillmarket.modules.user.model.User;
 import retrofit2.Call;
@@ -21,7 +21,9 @@ public interface UserService {
     Call<User> signIn(@Header(AUTH) String auth, @Query("userEmail") String email);
 
     @GET("user/get/friends")
-    Call<ArrayList<User>> getFriends(@Header(AUTH) String auth, @Query("userEmail") String email);
+    Call<List<User>> getFriends(@Header(AUTH) String auth, @Query("userEmail") String email);
 
+    @GET("user/get/all")
+    Call<List<User>> getAll(@Header(AUTH) String auth);
 
 }

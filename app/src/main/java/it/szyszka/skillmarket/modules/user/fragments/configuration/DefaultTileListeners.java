@@ -5,13 +5,12 @@ import android.os.Parcel;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 
-import it.szyszka.skillmarket.modules.announcements.fragments.OffersTile_;
 import it.szyszka.skillmarket.modules.application.fragments.AppSettingsFragment_;
+import it.szyszka.skillmarket.modules.mails.fragments.MailsFragment;
+import it.szyszka.skillmarket.modules.offers.fragments.AdvertisementFragment;
 import it.szyszka.skillmarket.modules.user.activities.SignInActivity_;
-import it.szyszka.skillmarket.modules.user.fragments.MailsFragment_;
 import it.szyszka.skillmarket.modules.user.fragments.PeopleFragment_;
 import it.szyszka.skillmarket.modules.user.fragments.UserAccountFragment;
-import it.szyszka.skillmarket.modules.user.fragments.UserAccountFragment_;
 import it.szyszka.skillmarket.modules.user.listeners.DefaultParcelableClickListener;
 import it.szyszka.skillmarket.modules.user.listeners.ParcelableClickListener;
 import it.szyszka.skillmarket.modules.user.model.Credentials;
@@ -51,7 +50,7 @@ public class DefaultTileListeners {
             }
             case MAILS: {
                 return new DefaultParcelableClickListener(
-                        new MailsFragment_(),
+                        MailsFragment.newInstance(displayedUser),
                         fragmentManager,
                         containerId
                 );
@@ -65,7 +64,7 @@ public class DefaultTileListeners {
             }
             case ANNOUNCEMENTS: {
                 return new DefaultParcelableClickListener(
-                        new OffersTile_(),
+                        AdvertisementFragment.newInstance(displayedUser),
                         fragmentManager,
                         containerId
                 );
